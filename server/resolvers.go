@@ -48,16 +48,27 @@ var nodes = []Node{
 	},
 }
 
-func nodeResolver(id string) Node {
+func nodeResolver(p graphql.ResolveParams) (interface{}, error) {
+	id := p.Args["id"].(string)
+
 	for _, n := range nodes {
 		if n.GetID() == id {
-			return n
+			return n, nil
 		}
 	}
-	return nil
+
+	return nil, nil
 }
 
-func nodeInterfaceResolver(p graphql.ResolveParams) (interface{}, error) {
-	id := p.Args["id"].(string)
-	return nodeResolver(id), nil
+type Viewer struct {
+	Actor *Person
+}
+
+func viewerResolver(p graphql.ResolveParams) (interface{}, error) {
+	for _, n := range nodes {
+		if person, ok := n.(*Person); ok && person.GetID() == "the-viewer" {
+			return &Viewer{Actor: person}, nil
+		}
+	}
+	return nil, nil
 }

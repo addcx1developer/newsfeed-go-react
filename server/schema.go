@@ -7,6 +7,7 @@ var categoryType *graphql.Enum
 var actorInterface *graphql.Interface
 var personType *graphql.Object
 var storyType *graphql.Object
+var viewerType *graphql.Object
 var queryType *graphql.Object
 
 func init() {
@@ -45,6 +46,14 @@ func init() {
 				Type: graphql.String,
 			},
 		},
+		ResolveType: func(p graphql.ResolveTypeParams) *graphql.Object {
+			switch p.Value.(type) {
+			case *Person:
+				return personType
+			default:
+				return nil
+			}
+		},
 	})
 
 	personType = graphql.NewObject(graphql.ObjectConfig{
@@ -73,15 +82,28 @@ func init() {
 				Type: graphql.NewNonNull(graphql.String),
 			},
 			"category": &graphql.Field{
-				Type: graphql.NewNonNull(categoryType),
+				Type: categoryType,
 			},
 		},
 		Interfaces: []*graphql.Interface{nodeInterface},
 	})
 
+	viewerType = graphql.NewObject(graphql.ObjectConfig{
+		Name: "Viewer",
+		Fields: graphql.Fields{
+			"actor": &graphql.Field{
+				Type: actorInterface,
+			},
+		},
+	})
+
 	queryType = graphql.NewObject(graphql.ObjectConfig{
 		Name: "Query",
 		Fields: graphql.Fields{
+			"viewer": &graphql.Field{
+				Type:    viewerType,
+				Resolve: viewerResolver,
+			},
 			"node": &graphql.Field{
 				Type: nodeInterface,
 				Args: graphql.FieldConfigArgument{
@@ -89,7 +111,7 @@ func init() {
 						Type: graphql.NewNonNull(graphql.ID),
 					},
 				},
-				Resolve: nodeInterfaceResolver,
+				Resolve: nodeResolver,
 			},
 		},
 	})

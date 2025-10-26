@@ -14,6 +14,10 @@ func main() {
 
 	schema, err := graphql.NewSchema(graphql.SchemaConfig{
 		Query: queryType,
+		Types: []graphql.Type{
+			personType,
+			storyType,
+		},
 	})
 
 	if err != nil {

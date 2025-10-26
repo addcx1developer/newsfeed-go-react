@@ -13,15 +13,3 @@ var queryType = graphql.NewObject(graphql.ObjectConfig{
 		},
 	},
 })
-
-func NewSchema() (graphql.Schema, error) {
-	schema, err := graphql.NewSchema(graphql.SchemaConfig{
-		Query: queryType,
-	})
-
-	if err != nil {
-		return graphql.Schema{}, err
-	}
-
-	return schema, nil
-}

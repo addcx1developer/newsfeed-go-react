@@ -76,6 +76,9 @@ func init() {
 			"name": &graphql.Field{
 				Type: graphql.String,
 			},
+			"profilePicture": &graphql.Field{
+				Type: imageType,
+			},
 		},
 		ResolveType: func(p graphql.ResolveTypeParams) *graphql.Object {
 			switch p.Value.(type) {
@@ -95,6 +98,9 @@ func init() {
 			},
 			"name": &graphql.Field{
 				Type: graphql.String,
+			},
+			"profilePicture": &graphql.Field{
+				Type: imageType,
 			},
 		},
 		Interfaces: []*graphql.Interface{
@@ -120,6 +126,10 @@ func init() {
 			},
 			"category": &graphql.Field{
 				Type: categoryType,
+			},
+			"poster": &graphql.Field{
+				Type:    actorInterface,
+				Resolve: storyPosterResolver,
 			},
 		},
 		Interfaces: []*graphql.Interface{nodeInterface},

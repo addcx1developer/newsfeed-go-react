@@ -13,8 +13,9 @@ type Node interface {
 }
 
 type Person struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
+	ID             string `json:"id"`
+	Name           string `json:"name"`
+	ProfilePicture *Image `json:"profilePicture"`
 }
 
 func (p *Person) GetID() string {
@@ -36,6 +37,7 @@ type Story struct {
 	Thumbnail *Image `json:"thumbnail"`
 	Summary   string `json:"summary"`
 	Category  string `json:"category"`
+	AuthorID  string `json:"authorID"`
 }
 
 func (s *Story) GetID() string {
@@ -50,6 +52,9 @@ var nodes = []Node{
 	&Person{
 		ID:   "the-viewer",
 		Name: "A. D. Veloper",
+		ProfilePicture: &Image{
+			URL: "/assets/a.png",
+		},
 	},
 	&Story{
 		ID:    "2",
@@ -60,6 +65,7 @@ var nodes = []Node{
 		},
 		Summary:  "The annual Yak of the Year awards ceremony took place last night, and this year's winner is none other than Max, a beloved yak from the small town of Millville. Max, who is known for his friendly personality and hardworking nature, beat out stiff competition from other yaks in the region to take home the coveted title.\n \nAccording to the judges, Max stood out due to his exceptional contributions to the community. He has been used as a pack animal to help transport goods to and from the town's market, and has also been a reliable source of milk and wool for local farmers. In addition, Max has become something of a local celebrity, often posing for photos with tourists and participating in community events.",
 		Category: "ALL",
+		AuthorID: "the-viewer",
 	},
 	&Story{
 		ID:       "3",
@@ -149,6 +155,19 @@ func nodeResolver(p graphql.ResolveParams) (interface{}, error) {
 	}
 
 	return nil, nil
+}
+
+func storyPosterResolver(p graphql.ResolveParams) (interface{}, error) {
+	story, ok := p.Source.(*Story)
+	if !ok || story == nil {
+		return nil, nil
+	}
+
+	return nodeResolver(graphql.ResolveParams{
+		Args: map[string]interface{}{
+			"id": story.AuthorID,
+		},
+	})
 }
 
 func topStoryResolver(p graphql.ResolveParams) (interface{}, error) {

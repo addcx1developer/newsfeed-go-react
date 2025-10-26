@@ -6,14 +6,14 @@ export default function Newsfeed(): ReactElement {
   const story = {
     title: "Placeholder Story",
     summary: "Placeholder data, to be replaced with data fetched via GraphQL",
+    thumbnail: {
+      url: "/assets/placeholder.jpeg",
+    },
     poster: {
       name: "Placeholder Person",
       profilePicture: {
         url: "/assets/cat_avatar.png",
       },
-    },
-    thumbnail: {
-      url: "/assets/placeholder.jpeg",
     },
   };
 

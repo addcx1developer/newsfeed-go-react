@@ -1,7 +1,9 @@
 import { Suspense } from "react";
 import type { ReactElement } from "react";
+
 import RelayEnvironment from "../relay/RelayEnvironment";
 import LoadingSpinner from "./LoadingSpinner";
+import Newsfeed from "./Newsfeed";
 
 export default function App(): ReactElement {
   return (
@@ -13,7 +15,9 @@ export default function App(): ReactElement {
           </div>
         }
       >
-        <div className="app"></div>
+        <div className="app">
+          <Newsfeed />
+        </div>
       </Suspense>
     </RelayEnvironment>
   );

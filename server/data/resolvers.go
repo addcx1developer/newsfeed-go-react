@@ -1,6 +1,9 @@
 package data
 
 import (
+	"fmt"
+	"net/url"
+
 	"github.com/graphql-go/graphql"
 )
 
@@ -22,11 +25,17 @@ func (p *Person) GetType() string {
 	return "Person"
 }
 
+type Image struct {
+	URL     string `json:"url"`
+	AltText string `json:"altText"`
+}
+
 type Story struct {
-	ID       string `json:"id"`
-	Title    string `json:"title"`
-	Summary  string `json:"summary"`
-	Category string `json:"category"`
+	ID        string `json:"id"`
+	Title     string `json:"title"`
+	Thumbnail *Image `json:"thumbnail"`
+	Summary   string `json:"summary"`
+	Category  string `json:"category"`
 }
 
 func (s *Story) GetID() string {
@@ -43,8 +52,12 @@ var nodes = []Node{
 		Name: "A. D. Veloper",
 	},
 	&Story{
-		ID:       "2",
-		Title:    "Local Yak Named Yak of the Year",
+		ID:    "2",
+		Title: "Local Yak Named Yak of the Year",
+		Thumbnail: &Image{
+			URL:     "/assets/yak.png",
+			AltText: "Portrait of Max the Yak by a local artist",
+		},
 		Summary:  "The annual Yak of the Year awards ceremony took place last night, and this year's winner is none other than Max, a beloved yak from the small town of Millville. Max, who is known for his friendly personality and hardworking nature, beat out stiff competition from other yaks in the region to take home the coveted title.\n \nAccording to the judges, Max stood out due to his exceptional contributions to the community. He has been used as a pack animal to help transport goods to and from the town's market, and has also been a reliable source of milk and wool for local farmers. In addition, Max has become something of a local celebrity, often posing for photos with tourists and participating in community events.",
 		Category: "ALL",
 	},
@@ -70,6 +83,51 @@ var nodes = []Node{
 
 type Viewer struct {
 	Actor *Person
+}
+
+type ImageArgs struct {
+	URL    string
+	Width  *int
+	Height *int
+}
+
+func buildImageURL(args ImageArgs) string {
+	u, err := url.Parse(args.URL)
+	if err != nil {
+		return args.URL
+	}
+
+	q := u.Query()
+	if args.Width != nil {
+		q.Set("width", fmt.Sprintf("%d", *args.Width))
+	}
+	if args.Height != nil {
+		q.Set("height", fmt.Sprintf("%d", *args.Height))
+	}
+
+	u.RawQuery = q.Encode()
+	return u.String()
+}
+
+func imageURLResolver(p graphql.ResolveParams) (interface{}, error) {
+	image, ok := p.Source.(*Image)
+	if !ok || image == nil {
+		return nil, nil
+	}
+
+	var widthPtr, heightPtr *int
+	if w, ok := p.Args["width"].(int); ok {
+		widthPtr = &w
+	}
+	if h, ok := p.Args["height"].(int); ok {
+		heightPtr = &h
+	}
+
+	return buildImageURL(ImageArgs{
+		URL:    image.URL,
+		Width:  widthPtr,
+		Height: heightPtr,
+	}), nil
 }
 
 func viewerResolver(p graphql.ResolveParams) (interface{}, error) {

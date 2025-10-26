@@ -6,6 +6,7 @@ import (
 
 var nodeInterface *graphql.Interface
 var categoryType *graphql.Enum
+var imageType *graphql.Object
 var actorInterface *graphql.Interface
 var personType *graphql.Object
 var storyType *graphql.Object
@@ -44,6 +45,27 @@ func init() {
 			},
 			"NEWS": &graphql.EnumValueConfig{
 				Value: "NEWS",
+			},
+		},
+	})
+
+	imageType = graphql.NewObject(graphql.ObjectConfig{
+		Name: "Image",
+		Fields: graphql.Fields{
+			"url": &graphql.Field{
+				Type: graphql.NewNonNull(graphql.String),
+				Args: graphql.FieldConfigArgument{
+					"width": &graphql.ArgumentConfig{
+						Type: graphql.Int,
+					},
+					"height": &graphql.ArgumentConfig{
+						Type: graphql.Int,
+					},
+				},
+				Resolve: imageURLResolver,
+			},
+			"altText": &graphql.Field{
+				Type: graphql.String,
 			},
 		},
 	})
@@ -89,6 +111,9 @@ func init() {
 			},
 			"title": &graphql.Field{
 				Type: graphql.NewNonNull(graphql.String),
+			},
+			"thumbnail": &graphql.Field{
+				Type: imageType,
 			},
 			"summary": &graphql.Field{
 				Type: graphql.String,

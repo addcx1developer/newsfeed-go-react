@@ -36,6 +36,9 @@ func init() {
 			"ALL": &graphql.EnumValueConfig{
 				Value: "ALL",
 			},
+			"EDUCATION": &graphql.EnumValueConfig{
+				Value: "EDUCATION",
+			},
 		},
 	})
 
@@ -112,6 +115,15 @@ func init() {
 					},
 				},
 				Resolve: nodeResolver,
+			},
+			"topStory": &graphql.Field{
+				Type: storyType,
+				Args: graphql.FieldConfigArgument{
+					"category": &graphql.ArgumentConfig{
+						Type: categoryType,
+					},
+				},
+				Resolve: topStoryResolver,
 			},
 		},
 	})

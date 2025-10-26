@@ -46,6 +46,29 @@ var nodes = []Node{
 		Title:    "Local Yak Named Yak of the Year",
 		Category: "ALL",
 	},
+	&Story{
+		ID:       "3",
+		Title:    "Why did the chicken cross the road? To get to the other side!",
+		Category: "EDUCATION",
+	},
+	&Story{
+		ID:       "story6",
+		Title:    "What is my cat trying to tell me?",
+		Category: "ALL",
+	},
+}
+
+type Viewer struct {
+	Actor *Person
+}
+
+func viewerResolver(p graphql.ResolveParams) (interface{}, error) {
+	for _, n := range nodes {
+		if person, ok := n.(*Person); ok && person.GetID() == "the-viewer" {
+			return &Viewer{Actor: person}, nil
+		}
+	}
+	return nil, nil
 }
 
 func nodeResolver(p graphql.ResolveParams) (interface{}, error) {
@@ -60,15 +83,23 @@ func nodeResolver(p graphql.ResolveParams) (interface{}, error) {
 	return nil, nil
 }
 
-type Viewer struct {
-	Actor *Person
-}
+func topStoryResolver(p graphql.ResolveParams) (interface{}, error) {
+	categoryArg, ok := p.Args["category"].(string)
 
-func viewerResolver(p graphql.ResolveParams) (interface{}, error) {
-	for _, n := range nodes {
-		if person, ok := n.(*Person); ok && person.GetID() == "the-viewer" {
-			return &Viewer{Actor: person}, nil
+	for _, node := range nodes {
+		story, isStory := node.(*Story)
+		if !isStory {
+			continue
+		}
+
+		if ok && categoryArg != "ALL" {
+			if story.Category == categoryArg {
+				return story, nil
+			}
+		} else {
+			return story, nil
 		}
 	}
+
 	return nil, nil
 }

@@ -1,5 +1,7 @@
 import type { ReactElement } from "react";
 
+import Story from "./Story";
+
 export default function Newsfeed(): ReactElement {
   const story = {
     title: "Placeholder Story",
@@ -17,28 +19,7 @@ export default function Newsfeed(): ReactElement {
 
   return (
     <div className="newsfeed">
-      <div className="card">
-        <div className="byline">
-          <img
-            key={story.poster.profilePicture.url}
-            src={story.poster.profilePicture.url}
-            width={60}
-            height={60}
-            className="byline__image"
-          />
-          <div className="byline__name">{story.poster.name}</div>
-        </div>
-        <h2 className="heading">{story.title}</h2>
-        <img
-          key={story.thumbnail.url}
-          src={story.thumbnail.url}
-          width={400}
-          height={400}
-        />
-        <div className="story__summary">
-          <p>{story.summary}</p>
-        </div>
-      </div>
+      <Story story={story} />
     </div>
   );
 }

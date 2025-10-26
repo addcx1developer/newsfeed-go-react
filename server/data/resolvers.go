@@ -1,4 +1,4 @@
-package main
+package data
 
 import (
 	"github.com/graphql-go/graphql"
@@ -109,7 +109,7 @@ func topStoryResolver(p graphql.ResolveParams) (interface{}, error) {
 	return nil, nil
 }
 
-func TopStoriesResolver(p graphql.ResolveParams) (interface{}, error) {
+func topStoriesResolver(p graphql.ResolveParams) (interface{}, error) {
 	var stories []*Story
 
 	for _, node := range nodes {

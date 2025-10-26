@@ -1,6 +1,6 @@
 {
   "src": "./src",
-  "schema": "./schema.graphql",
+  "schema": "./server/data/schema.json",
   "language": "typescript",
   "artifactDirectory": "./__generated__"
 }

@@ -4,28 +4,16 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/addcx1developer/newsfeed-go-react/server/data"
 	"github.com/go-chi/chi/v5"
-	"github.com/graphql-go/graphql"
 	"github.com/graphql-go/handler"
 )
 
 func main() {
 	r := chi.NewRouter()
 
-	schema, err := graphql.NewSchema(graphql.SchemaConfig{
-		Query: queryType,
-		Types: []graphql.Type{
-			personType,
-			storyType,
-		},
-	})
-
-	if err != nil {
-		panic(err)
-	}
-
 	h := handler.New(&handler.Config{
-		Schema:     &schema,
+		Schema:     &data.Schema,
 		Pretty:     true,
 		GraphiQL:   true,
 		Playground: false,

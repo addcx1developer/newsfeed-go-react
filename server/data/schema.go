@@ -1,6 +1,8 @@
-package main
+package data
 
-import "github.com/graphql-go/graphql"
+import (
+	"github.com/graphql-go/graphql"
+)
 
 var nodeInterface *graphql.Interface
 var categoryType *graphql.Enum
@@ -9,6 +11,7 @@ var personType *graphql.Object
 var storyType *graphql.Object
 var viewerType *graphql.Object
 var queryType *graphql.Object
+var Schema graphql.Schema
 
 func init() {
 	nodeInterface = graphql.NewInterface(graphql.InterfaceConfig{
@@ -130,8 +133,21 @@ func init() {
 			},
 			"topStories": &graphql.Field{
 				Type:    graphql.NewList(storyType),
-				Resolve: TopStoriesResolver,
+				Resolve: topStoriesResolver,
 			},
 		},
 	})
+
+	var err error
+	Schema, err = graphql.NewSchema(graphql.SchemaConfig{
+		Query: queryType,
+		Types: []graphql.Type{
+			personType,
+			storyType,
+		},
+	})
+
+	if err != nil {
+		panic(err)
+	}
 }

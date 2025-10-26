@@ -25,6 +25,7 @@ func (p *Person) GetType() string {
 type Story struct {
 	ID       string `json:"id"`
 	Title    string `json:"title"`
+	Summary  string `json:"summary"`
 	Category string `json:"category"`
 }
 
@@ -44,21 +45,25 @@ var nodes = []Node{
 	&Story{
 		ID:       "2",
 		Title:    "Local Yak Named Yak of the Year",
+		Summary:  "The annual Yak of the Year awards ceremony took place last night, and this year's winner is none other than Max, a beloved yak from the small town of Millville. Max, who is known for his friendly personality and hardworking nature, beat out stiff competition from other yaks in the region to take home the coveted title.\n \nAccording to the judges, Max stood out due to his exceptional contributions to the community. He has been used as a pack animal to help transport goods to and from the town's market, and has also been a reliable source of milk and wool for local farmers. In addition, Max has become something of a local celebrity, often posing for photos with tourists and participating in community events.",
 		Category: "ALL",
 	},
 	&Story{
 		ID:       "3",
 		Title:    "Why did the chicken cross the road? To get to the other side!",
+		Summary:  "Chickens are curious animals and will often explore their surroundings, including crossing roads if the opportunity arises. It is important to note that chickens are intelligent and adaptable animals, and the specific reasons for any given chicken crossing the road may vary depending on the individual and its circumstances.",
 		Category: "EDUCATION",
 	},
 	&Story{
 		ID:       "4",
 		Title:    "New Hedgehog Species Discovered",
+		Summary:  "Breaking news! Scientists have just announced the discovery of a new species of hedgehog, and you won't believe what makes this species unique.\n \n     According to the researchers, the new hedgehogs, which have been named 'sparklehogs,' are distinguished by their ability to produce rainbow-colored sparks from their spikes when they are feeling threatened.\n     \n     But that's not all! The sparklehogs have also been observed using their sparkling spikes to communicate with one another, creating dazzling light shows in the process.\n     \n     'We've never seen anything like it,' said lead researcher Dr. Maria Hernandez. 'These hedgehogs are truly one of a kind.'",
 		Category: "NEWS",
 	},
 	&Story{
 		ID:       "story6",
 		Title:    "What is my cat trying to tell me?",
+		Summary:  "I just had the most surreal conversation with my cat. I was talking to her about my day and she just stared at me with this really intense look in her eyes and meowed. I have no idea what she was trying to say, but I have a feeling she was trying to impart some deep wisdom on me. Or maybe she just wanted more treats. Either way, it was a very interesting conversation. #catconvo #felinewisdom",
 		Category: "ALL",
 	},
 }

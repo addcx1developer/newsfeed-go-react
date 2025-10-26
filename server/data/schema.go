@@ -90,6 +90,9 @@ func init() {
 			"title": &graphql.Field{
 				Type: graphql.NewNonNull(graphql.String),
 			},
+			"summary": &graphql.Field{
+				Type: graphql.String,
+			},
 			"category": &graphql.Field{
 				Type: categoryType,
 			},

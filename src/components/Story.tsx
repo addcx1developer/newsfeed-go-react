@@ -9,14 +9,20 @@ import Image from "./Image";
 import StorySummary from "./StorySummary";
 
 interface StoryProps {
-  story: {
-    title: string;
-    summary: string | null | undefined;
-    thumbnail: {
-      url: string;
-    } | null | undefined;
-    poster: PosterBylineProps["poster"] | null | undefined;
-  } | null | undefined;
+  story:
+    | {
+        title: string;
+        summary: string | null | undefined;
+        thumbnail:
+          | {
+              url: string;
+            }
+          | null
+          | undefined;
+        poster: PosterBylineProps["poster"];
+      }
+    | null
+    | undefined;
 }
 
 export default function Story({ story }: StoryProps): ReactElement {

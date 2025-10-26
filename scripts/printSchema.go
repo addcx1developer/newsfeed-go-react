@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -14,99 +13,116 @@ import (
 	"github.com/graphql-go/graphql/testutil"
 )
 
-func introspectionToSDL(data map[string]interface{}) string {
-	var buf bytes.Buffer
+func unwrapType(t map[string]interface{}) string {
+	if t == nil {
+		return "Unknown"
+	}
+	switch t["kind"] {
+	case "NON_NULL":
+		return fmt.Sprintf("%s!", unwrapType(t["ofType"].(map[string]interface{})))
+	case "LIST":
+		return fmt.Sprintf("[%s]", unwrapType(t["ofType"].(map[string]interface{})))
+	default:
+		if name, ok := t["name"].(string); ok {
+			return name
+		}
+		return "Unknown"
+	}
+}
 
-	types := data["__schema"].(map[string]interface{})["types"].([]interface{})
+func convertIntrospectionToSDL(introspection map[string]interface{}) string {
+	var sb strings.Builder
+	types := introspection["__schema"].(map[string]interface{})["types"].([]interface{})
+
 	sort.Slice(types, func(i, j int) bool {
-		return types[i].(map[string]interface{})["name"].(string) < types[j].(map[string]interface{})["name"].(string)
+		return types[i].(map[string]interface{})["name"].(string) <
+			types[j].(map[string]interface{})["name"].(string)
 	})
 
 	for _, t := range types {
-		typ := t.(map[string]interface{})
-		name := typ["name"].(string)
-		kind := typ["kind"].(string)
+		typeObj := t.(map[string]interface{})
+		name := typeObj["name"].(string)
+		kind := typeObj["kind"].(string)
 
+		// Skip internal GraphQL meta types
 		if strings.HasPrefix(name, "__") {
 			continue
 		}
 
 		switch kind {
 		case "OBJECT":
-			buf.WriteString(fmt.Sprintf("type %s {\n", name))
-			fields, ok := typ["fields"].([]interface{})
-			if ok {
+			sb.WriteString(fmt.Sprintf("type %s", name))
+			if interfaces, ok := typeObj["interfaces"].([]interface{}); ok && len(interfaces) > 0 {
+				names := []string{}
+				for _, iface := range interfaces {
+					names = append(names, iface.(map[string]interface{})["name"].(string))
+				}
+				sb.WriteString(" implements " + strings.Join(names, " & "))
+			}
+			sb.WriteString(" {\n")
+			if fields, ok := typeObj["fields"].([]interface{}); ok {
 				for _, f := range fields {
 					field := f.(map[string]interface{})
 					fieldName := field["name"].(string)
 					fieldType := unwrapType(field["type"].(map[string]interface{}))
-					buf.WriteString(fmt.Sprintf("  %s: %s\n", fieldName, fieldType))
+					sb.WriteString(fmt.Sprintf("  %s: %s\n", fieldName, fieldType))
 				}
 			}
-			buf.WriteString("}\n\n")
+			sb.WriteString("}\n\n")
+
+		case "INTERFACE":
+			sb.WriteString(fmt.Sprintf("interface %s {\n", name))
+			if fields, ok := typeObj["fields"].([]interface{}); ok {
+				for _, f := range fields {
+					field := f.(map[string]interface{})
+					sb.WriteString(fmt.Sprintf("  %s: %s\n",
+						field["name"].(string),
+						unwrapType(field["type"].(map[string]interface{})),
+					))
+				}
+			}
+			sb.WriteString("}\n\n")
+
 		case "ENUM":
-			buf.WriteString(fmt.Sprintf("enum %s {\n", name))
-			values, ok := typ["enumValues"].([]interface{})
-			if ok {
+			sb.WriteString(fmt.Sprintf("enum %s {\n", name))
+			if values, ok := typeObj["enumValues"].([]interface{}); ok {
 				for _, v := range values {
 					val := v.(map[string]interface{})
-					buf.WriteString(fmt.Sprintf("  %s\n", val["name"].(string)))
+					sb.WriteString(fmt.Sprintf("  %s\n", val["name"].(string)))
 				}
 			}
-			buf.WriteString("}\n\n")
-		case "INTERFACE":
-			buf.WriteString(fmt.Sprintf("interface %s {\n", name))
-			fields, ok := typ["fields"].([]interface{})
-			if ok {
+			sb.WriteString("}\n\n")
+
+		case "UNION":
+			sb.WriteString(fmt.Sprintf("union %s = ", name))
+			if possible, ok := typeObj["possibleTypes"].([]interface{}); ok {
+				names := []string{}
+				for _, p := range possible {
+					names = append(names, p.(map[string]interface{})["name"].(string))
+				}
+				sb.WriteString(strings.Join(names, " | "))
+			}
+			sb.WriteString("\n\n")
+
+		case "INPUT_OBJECT":
+			sb.WriteString(fmt.Sprintf("input %s {\n", name))
+			if fields, ok := typeObj["inputFields"].([]interface{}); ok {
 				for _, f := range fields {
 					field := f.(map[string]interface{})
-					fieldName := field["name"].(string)
-					fieldType := unwrapType(field["type"].(map[string]interface{}))
-					buf.WriteString(fmt.Sprintf("  %s: %s\n", fieldName, fieldType))
+					sb.WriteString(fmt.Sprintf("  %s: %s\n",
+						field["name"].(string),
+						unwrapType(field["type"].(map[string]interface{})),
+					))
 				}
 			}
-			buf.WriteString("}\n\n")
-		case "UNION":
-			buf.WriteString(fmt.Sprintf("union %s = ", name))
-			possibleTypes, ok := typ["possibleTypes"].([]interface{})
-			if ok {
-				names := []string{}
-				for _, pt := range possibleTypes {
-					names = append(names, pt.(map[string]interface{})["name"].(string))
-				}
-				buf.WriteString(strings.Join(names, " | "))
-			}
-			buf.WriteString("\n\n")
+			sb.WriteString("}\n\n")
+
 		case "SCALAR":
-			buf.WriteString(fmt.Sprintf("scalar %s\n\n", name))
-		case "INPUT_OBJECT":
-			buf.WriteString(fmt.Sprintf("input %s {\n", name))
-			inputFields, ok := typ["inputFields"].([]interface{})
-			if ok {
-				for _, f := range inputFields {
-					field := f.(map[string]interface{})
-					fieldName := field["name"].(string)
-					fieldType := unwrapType(field["type"].(map[string]interface{}))
-					buf.WriteString(fmt.Sprintf("  %s: %s\n", fieldName, fieldType))
-				}
-			}
-			buf.WriteString("}\n\n")
+			sb.WriteString(fmt.Sprintf("scalar %s\n\n", name))
 		}
 	}
 
-	return buf.String()
-}
-
-func unwrapType(t map[string]interface{}) string {
-	kind := t["kind"].(string)
-	switch kind {
-	case "NON_NULL":
-		return fmt.Sprintf("%s!", unwrapType(t["ofType"].(map[string]interface{})))
-	case "LIST":
-		return fmt.Sprintf("[%s]", unwrapType(t["ofType"].(map[string]interface{})))
-	default:
-		return t["name"].(string)
-	}
+	return sb.String()
 }
 
 func main() {
@@ -114,25 +130,26 @@ func main() {
 		Schema:        data.Schema,
 		RequestString: testutil.IntrospectionQuery,
 	})
-
 	if len(result.Errors) > 0 {
-		log.Fatalf("Failed to introspect schema: %v", result.Errors)
+		log.Fatalf("❌ Failed introspection: %v", result.Errors)
 	}
 
 	jsonBytes, err := json.Marshal(result.Data)
 	if err != nil {
-		log.Fatalf("marshal error: %v", err)
+		log.Fatalf("❌ Marshal error: %v", err)
 	}
 
 	var introspection map[string]interface{}
 	if err := json.Unmarshal(jsonBytes, &introspection); err != nil {
-		log.Fatalf("unmarshal error: %v", err)
+		log.Fatalf("❌ Unmarshal error: %v", err)
 	}
 
-	sdl := introspectionToSDL(introspection)
-	if err := os.WriteFile("./server/data/schema.graphql", []byte(sdl), 0644); err != nil {
-		log.Fatalf("write error: %v", err)
+	sdl := convertIntrospectionToSDL(introspection)
+
+	output := "./server/data/schema.graphql"
+	if err := os.WriteFile(output, []byte(sdl), 0644); err != nil {
+		log.Fatalf("❌ Write error: %v", err)
 	}
 
-	log.Println("✅ schema.graphql generated successfully (Go-only)!")
+	fmt.Println("✅ Schema written to", output)
 }

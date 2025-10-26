@@ -3,12 +3,10 @@ import type { ReactElement } from "react";
 import Image from "./Image";
 
 export interface PosterBylineProps {
-  poster: {
+  poster?: {
     name: string | null | undefined;
-    profilePicture: {
-      url: string;
-    } | null | undefined;
-  } | null | undefined;
+    profilePicture: { url: string } | null | undefined;
+  };
 }
 
 export default function PosterByline({

@@ -24,7 +24,7 @@ const NewsfeedQuery = graphql`
   }
 `;
 
-export default function Newsfeed(): ReactElement {
+export default function Newsfeed(): ReactElement | null {
   const data = useLazyLoadQuery<NewsfeedQueryType>(NewsfeedQuery, {});
   const story = data.topStory;
 

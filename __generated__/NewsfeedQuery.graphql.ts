@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<987b9ccdcc1bd9ee8b6aa842424c5b79>>
+ * @generated SignedSource<<a5378a74884a68e461c0dad665cbbd39>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,7 +17,7 @@ export type NewsfeedQuery$data = {
       readonly profilePicture: {
         readonly url: string;
       } | null | undefined;
-    } | null | undefined;
+    };
     readonly summary: string | null | undefined;
     readonly thumbnail: {
       readonly url: string;
@@ -79,6 +79,13 @@ v5 = {
   "name": "profilePicture",
   "plural": false,
   "selections": (v1/*: any*/),
+  "storageKey": null
+},
+v6 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
   "storageKey": null
 };
 return {
@@ -152,29 +159,31 @@ return {
                 "storageKey": null
               },
               (v4/*: any*/),
-              (v5/*: any*/)
+              (v5/*: any*/),
+              {
+                "kind": "InlineFragment",
+                "selections": [
+                  (v6/*: any*/)
+                ],
+                "type": "Node",
+                "abstractKey": "__isNode"
+              }
             ],
             "storageKey": null
           },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "id",
-            "storageKey": null
-          }
+          (v6/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "564a9d64da9f51b7882e073ba3f89c7a",
+    "cacheID": "101e4d9b9755a51eb8b6ed9b037e31ef",
     "id": null,
     "metadata": {},
     "name": "NewsfeedQuery",
     "operationKind": "query",
-    "text": "query NewsfeedQuery {\n  topStory {\n    title\n    thumbnail {\n      url\n    }\n    summary\n    poster {\n      __typename\n      name\n      profilePicture {\n        url\n      }\n    }\n    id\n  }\n}\n"
+    "text": "query NewsfeedQuery {\n  topStory {\n    title\n    thumbnail {\n      url\n    }\n    summary\n    poster {\n      __typename\n      name\n      profilePicture {\n        url\n      }\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n    }\n    id\n  }\n}\n"
   }
 };
 })();

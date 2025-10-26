@@ -128,7 +128,7 @@ func init() {
 				Type: categoryType,
 			},
 			"poster": &graphql.Field{
-				Type:    actorInterface,
+				Type:    graphql.NewNonNull(actorInterface),
 				Resolve: storyPosterResolver,
 			},
 		},

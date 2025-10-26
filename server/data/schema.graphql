@@ -6,9 +6,9 @@ interface Actor {
 scalar Boolean
 
 enum Category {
-  EDUCATION
   NEWS
   ALL
+  EDUCATION
 }
 
 scalar ID
@@ -24,7 +24,7 @@ interface Node {
   id: ID!
 }
 
-type Person {
+type Person implements Node & Actor {
   id: ID!
   name: String
   profilePicture: Image
@@ -37,10 +37,10 @@ type Query {
   viewer: Viewer
 }
 
-type Story {
+type Story implements Node {
   category: Category
   id: ID!
-  poster: Actor
+  poster: Actor!
   summary: String
   thumbnail: Image
   title: String!

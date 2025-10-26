@@ -2,5 +2,9 @@
   "src": "./src",
   "schema": "./server/data/schema.graphql",
   "language": "typescript",
-  "artifactDirectory": "./__generated__"
+  "artifactDirectory": "./__generated__",
+  "persistConfig": {
+    "file": "./persisted-queries.json",
+    "algorithm": "SHA256"
+  }
 }

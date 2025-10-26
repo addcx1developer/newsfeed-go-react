@@ -1,5 +1,6 @@
 /**
- * @generated SignedSource<<a5378a74884a68e461c0dad665cbbd39>>
+ * @generated SignedSource<<820f917ce223ed907a5716f1adae7777>>
+ * @relayHash 101e4d9b9755a51eb8b6ed9b037e31ef
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -7,6 +8,8 @@
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
+
+// @relayRequestID 25e692130842e17a0a99e8c784bfb65bc5b563a19943c1227aaee4f85bf664be
 
 import { ConcreteRequest } from 'relay-runtime';
 export type NewsfeedQuery$variables = Record<PropertyKey, never>;
@@ -178,12 +181,11 @@ return {
     ]
   },
   "params": {
-    "cacheID": "101e4d9b9755a51eb8b6ed9b037e31ef",
-    "id": null,
+    "id": "25e692130842e17a0a99e8c784bfb65bc5b563a19943c1227aaee4f85bf664be",
     "metadata": {},
     "name": "NewsfeedQuery",
     "operationKind": "query",
-    "text": "query NewsfeedQuery {\n  topStory {\n    title\n    thumbnail {\n      url\n    }\n    summary\n    poster {\n      __typename\n      name\n      profilePicture {\n        url\n      }\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n    }\n    id\n  }\n}\n"
+    "text": null
   }
 };
 })();

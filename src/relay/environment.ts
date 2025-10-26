@@ -12,7 +12,7 @@ const fetchFn: FetchFunction = (params, variables) => {
     method: "POST",
     headers: [["Content-Type", "application/json"]],
     body: JSON.stringify({
-      query: params.text,
+      doc_id: params.id,
       variables,
     }),
   });

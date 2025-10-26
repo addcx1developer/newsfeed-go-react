@@ -4,10 +4,19 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/graphql-go/graphql"
 )
 
 func main() {
 	r := chi.NewRouter()
+
+	schema, err := graphql.NewSchema(graphql.SchemaConfig{
+		Query: queryType,
+	})
+
+	if err != nil {
+		panic(err)
+	}
 
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)

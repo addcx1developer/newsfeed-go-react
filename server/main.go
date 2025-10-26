@@ -21,10 +21,13 @@ func main() {
 	}
 
 	h := handler.New(&handler.Config{
-		Schema: &schema,
-		Pretty: true,
+		Schema:     &schema,
+		Pretty:     true,
+		GraphiQL:   true,
+		Playground: false,
 	})
 
+	r.Get("/graphql", h.ServeHTTP)
 	r.Post("/graphql", h.ServeHTTP)
 
 	log.Println("Server is running on port 8080")

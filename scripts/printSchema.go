@@ -44,7 +44,6 @@ func convertIntrospectionToSDL(introspection map[string]interface{}) string {
 		name := typeObj["name"].(string)
 		kind := typeObj["kind"].(string)
 
-		// Skip internal GraphQL meta types
 		if strings.HasPrefix(name, "__") {
 			continue
 		}

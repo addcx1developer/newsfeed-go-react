@@ -1,54 +1,89 @@
-interface Actor {
-  name: String
-  profilePicture: Image
-}
-
-scalar Boolean
-
-enum Category {
-  NEWS
-  ALL
-  EDUCATION
-}
-
-scalar ID
-
-type Image {
-  altText: String
-  url: String!
-}
-
-scalar Int
-
-interface Node {
-  id: ID!
-}
-
+""""""
 type Person implements Node & Actor {
+  """"""
   id: ID!
+
+  """"""
   name: String
+
+  """"""
   profilePicture: Image
 }
 
+""""""
 type Query {
-  node: Node
+  """"""
+  node(id: ID!): Node
+
+  """"""
   topStories: [Story]
-  topStory: Story
+
+  """"""
+  topStory(category: Category): Story
+
+  """"""
   viewer: Viewer
 }
 
-type Story implements Node {
-  category: Category
+""""""
+interface Node {
+  """"""
   id: ID!
+}
+
+""""""
+enum Category {
+  """"""
+  ALL
+
+  """"""
+  EDUCATION
+
+  """"""
+  NEWS
+}
+
+""""""
+type Story implements Node {
+  """"""
+  category: Category
+
+  """"""
+  id: ID!
+
+  """"""
   poster: Actor!
+
+  """"""
   summary: String
+
+  """"""
   thumbnail: Image
+
+  """"""
   title: String!
 }
 
-scalar String
-
+""""""
 type Viewer {
+  """"""
   actor: Actor
 }
 
+""""""
+type Image {
+  """"""
+  altText: String
+
+  """"""
+  url(width: Int, height: Int): String!
+}
+
+""""""
+interface Actor {
+  """"""
+  name: String
+
+  """"""
+  profilePicture: Image
+}

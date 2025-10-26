@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write .",
-    "print-schema": "go run server/scripts/printSchema.go",
+    "print-schema": "go run ./scripts/printSchema.go",
     "relay": "relay-compiler"
   },
   "dependencies": {

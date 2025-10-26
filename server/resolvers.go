@@ -52,6 +52,11 @@ var nodes = []Node{
 		Category: "EDUCATION",
 	},
 	&Story{
+		ID:       "4",
+		Title:    "New Hedgehog Species Discovered",
+		Category: "NEWS",
+	},
+	&Story{
 		ID:       "story6",
 		Title:    "What is my cat trying to tell me?",
 		Category: "ALL",
@@ -102,4 +107,22 @@ func topStoryResolver(p graphql.ResolveParams) (interface{}, error) {
 	}
 
 	return nil, nil
+}
+
+func TopStoriesResolver(p graphql.ResolveParams) (interface{}, error) {
+	var stories []*Story
+
+	for _, node := range nodes {
+		story, ok := node.(*Story)
+		if !ok {
+			continue
+		}
+		stories = append(stories, story)
+	}
+
+	if len(stories) > 3 {
+		stories = stories[:3]
+	}
+
+	return stories, nil
 }

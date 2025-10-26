@@ -39,6 +39,9 @@ func init() {
 			"EDUCATION": &graphql.EnumValueConfig{
 				Value: "EDUCATION",
 			},
+			"NEWS": &graphql.EnumValueConfig{
+				Value: "NEWS",
+			},
 		},
 	})
 
@@ -124,6 +127,10 @@ func init() {
 					},
 				},
 				Resolve: topStoryResolver,
+			},
+			"topStories": &graphql.Field{
+				Type:    graphql.NewList(storyType),
+				Resolve: TopStoriesResolver,
 			},
 		},
 	})

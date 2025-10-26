@@ -4,11 +4,11 @@ import Image from "./Image";
 
 export interface PosterBylineProps {
   poster: {
-    name: string;
+    name: string | null | undefined;
     profilePicture: {
       url: string;
-    };
-  };
+    } | null | undefined;
+  } | null | undefined;
 }
 
 export default function PosterByline({

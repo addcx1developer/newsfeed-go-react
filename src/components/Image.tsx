@@ -3,7 +3,7 @@ import type { ReactElement } from "react";
 interface ImageProps {
   image: {
     url: string;
-  };
+  } | null | undefined;
   width?: number;
   height?: number;
   className?: string;

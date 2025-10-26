@@ -1,0 +1,54 @@
+interface Actor {
+  name: String
+  profilePicture: Image
+}
+
+scalar Boolean
+
+enum Category {
+  EDUCATION
+  NEWS
+  ALL
+}
+
+scalar ID
+
+type Image {
+  altText: String
+  url: String!
+}
+
+scalar Int
+
+interface Node {
+  id: ID!
+}
+
+type Person {
+  id: ID!
+  name: String
+  profilePicture: Image
+}
+
+type Query {
+  node: Node
+  topStories: [Story]
+  topStory: Story
+  viewer: Viewer
+}
+
+type Story {
+  category: Category
+  id: ID!
+  poster: Actor
+  summary: String
+  thumbnail: Image
+  title: String!
+}
+
+scalar String
+
+type Viewer {
+  actor: Actor
+}
+

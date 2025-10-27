@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "prepare": "husky",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -13,8 +14,7 @@
     "watch-relay": "relay-compiler --watch",
     "watch-server": "air",
     "watch-vite": "vite",
-    "dev": "concurrently npm:watch-* -c auto",
-    "prepare": "husky"
+    "dev": "concurrently npm:watch-* -c auto"
   },
   "dependencies": {
     "react": "^19.1.1",

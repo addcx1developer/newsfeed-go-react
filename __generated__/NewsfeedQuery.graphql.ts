@@ -1,6 +1,6 @@
 /**
- * @generated SignedSource<<111c5716cde45c4cc66db138dccf8481>>
- * @relayHash 252db7056758f30919f8ef1bc37d8bc5
+ * @generated SignedSource<<4961a72c9c5ad4f1d08e5401081aa6ab>>
+ * @relayHash cf5ada3740395a8b4ee1f4cec7d66ccd
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,7 +9,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-// @relayRequestID 69c135b9d3b9d76ae286c0b4fb2c4f8283e28cba6d2f94b5635491a2a6cf6aa6
+// @relayRequestID 909fa7cf535c2587b39854aac4665f8c4320dc55784fef849e03ef5dc9222b9c
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
@@ -119,6 +119,10 @@ return {
                 "storageKey": null
               },
               {
+                "kind": "TypeDiscriminator",
+                "abstractKey": "__isActor"
+              },
+              {
                 "alias": null,
                 "args": null,
                 "kind": "ScalarField",
@@ -163,7 +167,7 @@ return {
     ]
   },
   "params": {
-    "id": "69c135b9d3b9d76ae286c0b4fb2c4f8283e28cba6d2f94b5635491a2a6cf6aa6",
+    "id": "909fa7cf535c2587b39854aac4665f8c4320dc55784fef849e03ef5dc9222b9c",
     "metadata": {},
     "name": "NewsfeedQuery",
     "operationKind": "query",

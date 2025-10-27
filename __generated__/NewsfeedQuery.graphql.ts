@@ -1,6 +1,6 @@
 /**
- * @generated SignedSource<<dd8256f7561daee0d305112a45d5a250>>
- * @relayHash bacf5fcfed42d1ff49d46f5e380740c3
+ * @generated SignedSource<<111c5716cde45c4cc66db138dccf8481>>
+ * @relayHash 252db7056758f30919f8ef1bc37d8bc5
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,24 +9,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-// @relayRequestID 117b8b8b038e79858cf4a7a1feef491aa18608c8cfb29eb73121a927a40592a1
+// @relayRequestID 69c135b9d3b9d76ae286c0b4fb2c4f8283e28cba6d2f94b5635491a2a6cf6aa6
 
 import { ConcreteRequest } from 'relay-runtime';
+import { FragmentRefs } from "relay-runtime";
 export type NewsfeedQuery$variables = Record<PropertyKey, never>;
 export type NewsfeedQuery$data = {
   readonly topStory: {
-    readonly createdAt: string;
-    readonly poster: {
-      readonly name: string | null | undefined;
-      readonly profilePicture: {
-        readonly url: string;
-      } | null | undefined;
-    };
-    readonly summary: string | null | undefined;
-    readonly thumbnail: {
-      readonly url: string;
-    } | null | undefined;
-    readonly title: string;
+    readonly " $fragmentSpreads": FragmentRefs<"StoryFragment">;
   } | null | undefined;
 };
 export type NewsfeedQuery = {
@@ -35,14 +25,7 @@ export type NewsfeedQuery = {
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "title",
-  "storageKey": null
-},
-v1 = [
+var v0 = [
   {
     "alias": null,
     "args": null,
@@ -51,48 +34,7 @@ v1 = [
     "storageKey": null
   }
 ],
-v2 = {
-  "alias": null,
-  "args": null,
-  "concreteType": "Image",
-  "kind": "LinkedField",
-  "name": "thumbnail",
-  "plural": false,
-  "selections": (v1/*: any*/),
-  "storageKey": null
-},
-v3 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "summary",
-  "storageKey": null
-},
-v4 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "name",
-  "storageKey": null
-},
-v5 = {
-  "alias": null,
-  "args": null,
-  "concreteType": "Image",
-  "kind": "LinkedField",
-  "name": "profilePicture",
-  "plural": false,
-  "selections": (v1/*: any*/),
-  "storageKey": null
-},
-v6 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "createdAt",
-  "storageKey": null
-},
-v7 = {
+v1 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -114,23 +56,11 @@ return {
         "name": "topStory",
         "plural": false,
         "selections": [
-          (v0/*: any*/),
-          (v2/*: any*/),
-          (v3/*: any*/),
           {
-            "alias": null,
             "args": null,
-            "concreteType": null,
-            "kind": "LinkedField",
-            "name": "poster",
-            "plural": false,
-            "selections": [
-              (v4/*: any*/),
-              (v5/*: any*/)
-            ],
-            "storageKey": null
-          },
-          (v6/*: any*/)
+            "kind": "FragmentSpread",
+            "name": "StoryFragment"
+          }
         ],
         "storageKey": null
       }
@@ -152,9 +82,27 @@ return {
         "name": "topStory",
         "plural": false,
         "selections": [
-          (v0/*: any*/),
-          (v2/*: any*/),
-          (v3/*: any*/),
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "title",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "summary",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "createdAt",
+            "storageKey": null
+          },
           {
             "alias": null,
             "args": null,
@@ -170,12 +118,27 @@ return {
                 "name": "__typename",
                 "storageKey": null
               },
-              (v4/*: any*/),
-              (v5/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "name",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Image",
+                "kind": "LinkedField",
+                "name": "profilePicture",
+                "plural": false,
+                "selections": (v0/*: any*/),
+                "storageKey": null
+              },
               {
                 "kind": "InlineFragment",
                 "selections": [
-                  (v7/*: any*/)
+                  (v1/*: any*/)
                 ],
                 "type": "Node",
                 "abstractKey": "__isNode"
@@ -183,15 +146,24 @@ return {
             ],
             "storageKey": null
           },
-          (v6/*: any*/),
-          (v7/*: any*/)
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "Image",
+            "kind": "LinkedField",
+            "name": "thumbnail",
+            "plural": false,
+            "selections": (v0/*: any*/),
+            "storageKey": null
+          },
+          (v1/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "id": "117b8b8b038e79858cf4a7a1feef491aa18608c8cfb29eb73121a927a40592a1",
+    "id": "69c135b9d3b9d76ae286c0b4fb2c4f8283e28cba6d2f94b5635491a2a6cf6aa6",
     "metadata": {},
     "name": "NewsfeedQuery",
     "operationKind": "query",
@@ -200,6 +172,6 @@ return {
 };
 })();
 
-(node as any).hash = "103d30f28341734f831c9cab2f2d4292";
+(node as any).hash = "65c357bf80ef742b634fe4d5946d1b3a";
 
 export default node;

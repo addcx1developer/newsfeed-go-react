@@ -1,6 +1,9 @@
+import { useFragment } from "react-relay";
+import { graphql } from "relay-runtime";
+
 import type { ReactElement } from "react";
 
-import type { PosterBylineProps } from "./PosterByline";
+import type { StoryFragment$key } from "../../__generated__/StoryFragment.graphql";
 
 import Card from "./Card";
 import PosterByline from "./PosterByline";
@@ -10,25 +13,36 @@ import StorySummary from "./StorySummary";
 import Timestamp from "./Timestamp";
 
 interface StoryProps {
-  story?: {
-    title: string;
-    summary?: string | null;
-    createdAt?: string;
-    thumbnail?: {
-      url: string;
-    } | null;
-    poster: PosterBylineProps["poster"];
-  } | null;
+  story?: StoryFragment$key | null;
 }
 
+const StoryFragment = graphql`
+  fragment StoryFragment on Story {
+    title
+    summary
+    createdAt
+    poster {
+      name
+      profilePicture {
+        url
+      }
+    }
+    thumbnail {
+      url
+    }
+  }
+`;
+
 export default function Story({ story }: StoryProps): ReactElement {
+  const data = useFragment<StoryFragment$key>(StoryFragment, story);
+
   return (
     <Card>
-      <PosterByline poster={story?.poster} />
-      <Heading>{story?.title}</Heading>
-      <Timestamp time={story?.createdAt} />
-      <Image image={story?.thumbnail} width={400} height={400} />
-      <StorySummary summary={story?.summary} />
+      <PosterByline poster={data?.poster} />
+      <Heading>{data?.title}</Heading>
+      <Timestamp time={data?.createdAt} />
+      <Image image={data?.thumbnail} width={400} height={400} />
+      <StorySummary summary={data?.summary} />
     </Card>
   );
 }

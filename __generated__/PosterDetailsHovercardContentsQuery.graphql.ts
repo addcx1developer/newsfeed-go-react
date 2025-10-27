@@ -1,6 +1,6 @@
 /**
- * @generated SignedSource<<58bb97d67a0a492ecff0e00b4ce5c6ee>>
- * @relayHash f0710468ed1d2bed6012cca8e71db2a5
+ * @generated SignedSource<<bc1b9e562f8a109cd8c22889b9488892>>
+ * @relayHash 25b86260e454bb9c6688dffb121c2ded
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,7 +9,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-// @relayRequestID 838546be385bf562b12dc596827c2b27ed3378358e52ae00468bbb41cc6251eb
+// @relayRequestID efab13e0b0b3c35d47d397dbd3bb628adb8e8487b752dd870c4170533b4a7fbc
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
@@ -144,6 +144,20 @@ return {
                 "kind": "ScalarField",
                 "name": "joined",
                 "storageKey": null
+              },
+              {
+                "kind": "InlineFragment",
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "organizationKind",
+                    "storageKey": null
+                  }
+                ],
+                "type": "Organization",
+                "abstractKey": null
               }
             ],
             "type": "Actor",
@@ -155,7 +169,7 @@ return {
     ]
   },
   "params": {
-    "id": "838546be385bf562b12dc596827c2b27ed3378358e52ae00468bbb41cc6251eb",
+    "id": "efab13e0b0b3c35d47d397dbd3bb628adb8e8487b752dd870c4170533b4a7fbc",
     "metadata": {},
     "name": "PosterDetailsHovercardContentsQuery",
     "operationKind": "query",

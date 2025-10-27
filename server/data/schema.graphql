@@ -1,4 +1,73 @@
 """"""
+type Viewer {
+  """"""
+  actor: Actor
+
+  """"""
+  contacts(search: String): [Actor]
+}
+
+""""""
+interface Node {
+  """"""
+  id: ID!
+}
+
+""""""
+type Person implements Node & Actor {
+  """"""
+  id: ID!
+
+  """"""
+  joined: String
+
+  """"""
+  name: String
+
+  """"""
+  profilePicture: Image
+}
+
+""""""
+type Organization implements Node & Actor {
+  """"""
+  id: ID!
+
+  """"""
+  joined: String
+
+  """"""
+  name: String
+
+  """"""
+  organizationKind: OrganizationKind
+
+  """"""
+  profilePicture: Image
+}
+
+""""""
+enum OrganizationKind {
+  """"""
+  NONPROFIT
+}
+
+""""""
+interface Actor {
+  """"""
+  id: ID!
+
+  """"""
+  name: String
+
+  """"""
+  profilePicture: Image
+
+  """"""
+  joined: String
+}
+
+""""""
 type Query {
   """"""
   node(id: ID!): Node
@@ -23,21 +92,6 @@ type Image {
 }
 
 """"""
-type Person implements Node & Actor {
-  """"""
-  id: ID!
-
-  """"""
-  joined: String
-
-  """"""
-  name: String
-
-  """"""
-  profilePicture: Image
-}
-
-""""""
 enum Category {
   """"""
   ALL
@@ -47,30 +101,6 @@ enum Category {
 
   """"""
   NEWS
-}
-
-""""""
-interface Actor {
-  """"""
-  profilePicture: Image
-
-  """"""
-  joined: String
-
-  """"""
-  id: ID!
-
-  """"""
-  name: String
-}
-
-""""""
-type Viewer {
-  """"""
-  actor: Actor
-
-  """"""
-  contacts(search: String): [Actor]
 }
 
 """"""
@@ -95,10 +125,4 @@ type Story implements Node {
 
   """"""
   title: String!
-}
-
-""""""
-interface Node {
-  """"""
-  id: ID!
 }

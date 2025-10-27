@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e1335613c5959f72a1db39b23dda90f3>>
+ * @generated SignedSource<<db99c0196a3760d712e37bbea1c36885>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,11 +9,13 @@
 // @ts-nocheck
 
 import { ReaderFragment } from 'relay-runtime';
+export type OrganizationKind = "NONPROFIT" | "%future added value";
 import { FragmentRefs } from "relay-runtime";
 export type PosterDetailsHovercardContentsBodyFragment$data = {
   readonly id: string;
   readonly joined: string | null | undefined;
   readonly name: string | null | undefined;
+  readonly organizationKind?: OrganizationKind | null | undefined;
   readonly profilePicture: {
     readonly " $fragmentSpreads": FragmentRefs<"ImageFragment">;
   } | null | undefined;
@@ -61,6 +63,20 @@ const node: ReaderFragment = {
       "storageKey": null
     },
     {
+      "kind": "InlineFragment",
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "organizationKind",
+          "storageKey": null
+        }
+      ],
+      "type": "Organization",
+      "abstractKey": null
+    },
+    {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
@@ -72,6 +88,6 @@ const node: ReaderFragment = {
   "abstractKey": "__isActor"
 };
 
-(node as any).hash = "0d15de4b3875522625dec16f29610f30";
+(node as any).hash = "60b12a907152cbef0e9040e27ec0b987";
 
 export default node;

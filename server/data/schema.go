@@ -5,15 +5,17 @@ import (
 )
 
 var (
-	nodeInterface  *graphql.Interface
-	categoryType   *graphql.Enum
-	imageType      *graphql.Object
-	actorInterface *graphql.Interface
-	personType     *graphql.Object
-	storyType      *graphql.Object
-	viewerType     *graphql.Object
-	queryType      *graphql.Object
-	Schema         graphql.Schema
+	nodeInterface        *graphql.Interface
+	categoryType         *graphql.Enum
+	organizationKindType *graphql.Enum
+	imageType            *graphql.Object
+	actorInterface       *graphql.Interface
+	personType           *graphql.Object
+	organizationType     *graphql.Object
+	storyType            *graphql.Object
+	viewerType           *graphql.Object
+	queryType            *graphql.Object
+	Schema               graphql.Schema
 )
 
 func init() {
@@ -28,6 +30,8 @@ func init() {
 			switch p.Value.(type) {
 			case *Person:
 				return personType
+			case *Organization:
+				return organizationType
 			case *Story:
 				return storyType
 			default:
@@ -47,6 +51,15 @@ func init() {
 			},
 			"NEWS": &graphql.EnumValueConfig{
 				Value: "NEWS",
+			},
+		},
+	})
+
+	organizationKindType = graphql.NewEnum(graphql.EnumConfig{
+		Name: "OrganizationKind",
+		Values: graphql.EnumValueConfigMap{
+			"NONPROFIT": &graphql.EnumValueConfig{
+				Value: "NONPROFIT",
 			},
 		},
 	})
@@ -92,6 +105,8 @@ func init() {
 			switch p.Value.(type) {
 			case *Person:
 				return personType
+			case *Organization:
+				return organizationType
 			default:
 				return nil
 			}
@@ -109,6 +124,31 @@ func init() {
 			},
 			"profilePicture": &graphql.Field{
 				Type: imageType,
+			},
+			"joined": &graphql.Field{
+				Type: graphql.String,
+			},
+		},
+		Interfaces: []*graphql.Interface{
+			nodeInterface,
+			actorInterface,
+		},
+	})
+
+	organizationType = graphql.NewObject(graphql.ObjectConfig{
+		Name: "Organization",
+		Fields: graphql.Fields{
+			"id": &graphql.Field{
+				Type: graphql.NewNonNull(graphql.ID),
+			},
+			"name": &graphql.Field{
+				Type: graphql.String,
+			},
+			"profilePicture": &graphql.Field{
+				Type: imageType,
+			},
+			"organizationKind": &graphql.Field{
+				Type: organizationKindType,
 			},
 			"joined": &graphql.Field{
 				Type: graphql.String,
@@ -204,6 +244,7 @@ func init() {
 		Query: queryType,
 		Types: []graphql.Type{
 			personType,
+			organizationType,
 			storyType,
 		},
 	})

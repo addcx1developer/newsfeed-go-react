@@ -28,6 +28,22 @@ func (p *Person) GetType() string {
 	return "Person"
 }
 
+type Organization struct {
+	ID               string `json:"id"`
+	Name             string `json:"name"`
+	ProfilePicture   *Image `json:"profilePicture"`
+	Joined           string `json:"joined"`
+	OrganizationKind string `json:"organizationKind"`
+}
+
+func (o *Organization) GetID() string {
+	return o.ID
+}
+
+func (o *Organization) GetType() string {
+	return "Organization"
+}
+
 type Image struct {
 	URL     string `json:"url"`
 	AltText string `json:"altText"`
@@ -68,6 +84,16 @@ var nodes = []Node{
 		},
 		Joined: "2025-10-27T00:00:00.000Z",
 	},
+	&Organization{
+		ID:   "7",
+		Name: "Baller Bovine Board",
+		ProfilePicture: &Image{
+			URL:     "/assets/bovine.png",
+			AltText: "Blue-ribboned insignia of the Baller Bovine Board",
+		},
+		OrganizationKind: "NONPROFIT",
+		Joined:           "2025-10-27T00:00:00.000Z",
+	},
 	&Story{
 		ID:    "2",
 		Title: "Local Yak Named Yak of the Year",
@@ -77,7 +103,7 @@ var nodes = []Node{
 		},
 		Summary:   "The annual Yak of the Year awards ceremony took place last night, and this year's winner is none other than Max, a beloved yak from the small town of Millville. Max, who is known for his friendly personality and hardworking nature, beat out stiff competition from other yaks in the region to take home the coveted title.\n \nAccording to the judges, Max stood out due to his exceptional contributions to the community. He has been used as a pack animal to help transport goods to and from the town's market, and has also been a reliable source of milk and wool for local farmers. In addition, Max has become something of a local celebrity, often posing for photos with tourists and participating in community events.",
 		Category:  "ALL",
-		AuthorID:  "the-viewer",
+		AuthorID:  "7",
 		CreatedAt: "2025-10-27T00:00:00.000Z",
 	},
 	&Story{

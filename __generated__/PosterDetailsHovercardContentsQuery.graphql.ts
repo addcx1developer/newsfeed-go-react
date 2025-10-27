@@ -1,6 +1,6 @@
 /**
- * @generated SignedSource<<bc1b9e562f8a109cd8c22889b9488892>>
- * @relayHash 25b86260e454bb9c6688dffb121c2ded
+ * @generated SignedSource<<056b95b3b552439482619d762b366063>>
+ * @relayHash ea81b33bc323e8e5d9ddeab7b0e2093a
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,7 +9,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-// @relayRequestID efab13e0b0b3c35d47d397dbd3bb628adb8e8487b752dd870c4170533b4a7fbc
+// @relayRequestID 8504eae8332221472845a7c75880b71f22841b713d6b078e12e689efa4fe7971
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
@@ -40,7 +40,21 @@ v1 = [
     "name": "id",
     "variableName": "posterID"
   }
-];
+],
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "name",
+  "storageKey": null
+};
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
@@ -96,23 +110,11 @@ return {
             "name": "__typename",
             "storageKey": null
           },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "id",
-            "storageKey": null
-          },
+          (v2/*: any*/),
           {
             "kind": "InlineFragment",
             "selections": [
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "name",
-                "storageKey": null
-              },
+              (v3/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -151,6 +153,26 @@ return {
                   {
                     "alias": null,
                     "args": null,
+                    "concreteType": "Location",
+                    "kind": "LinkedField",
+                    "name": "location",
+                    "plural": false,
+                    "selections": [
+                      (v3/*: any*/),
+                      (v2/*: any*/)
+                    ],
+                    "storageKey": null
+                  }
+                ],
+                "type": "Person",
+                "abstractKey": null
+              },
+              {
+                "kind": "InlineFragment",
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
                     "kind": "ScalarField",
                     "name": "organizationKind",
                     "storageKey": null
@@ -169,7 +191,7 @@ return {
     ]
   },
   "params": {
-    "id": "efab13e0b0b3c35d47d397dbd3bb628adb8e8487b752dd870c4170533b4a7fbc",
+    "id": "8504eae8332221472845a7c75880b71f22841b713d6b078e12e689efa4fe7971",
     "metadata": {},
     "name": "PosterDetailsHovercardContentsQuery",
     "operationKind": "query",

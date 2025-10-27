@@ -9,6 +9,7 @@ var (
 	categoryType         *graphql.Enum
 	organizationKindType *graphql.Enum
 	imageType            *graphql.Object
+	locationType         *graphql.Object
 	actorInterface       *graphql.Interface
 	personType           *graphql.Object
 	organizationType     *graphql.Object
@@ -85,6 +86,18 @@ func init() {
 		},
 	})
 
+	locationType = graphql.NewObject(graphql.ObjectConfig{
+		Name: "Location",
+		Fields: graphql.Fields{
+			"id": &graphql.Field{
+				Type: graphql.NewNonNull(graphql.ID),
+			},
+			"name": &graphql.Field{
+				Type: graphql.NewNonNull(graphql.String),
+			},
+		},
+	})
+
 	actorInterface = graphql.NewInterface(graphql.InterfaceConfig{
 		Name: "Actor",
 		Fields: graphql.Fields{
@@ -124,6 +137,9 @@ func init() {
 			},
 			"profilePicture": &graphql.Field{
 				Type: imageType,
+			},
+			"location": &graphql.Field{
+				Type: locationType,
 			},
 			"joined": &graphql.Field{
 				Type: graphql.String,

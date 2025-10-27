@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<db99c0196a3760d712e37bbea1c36885>>
+ * @generated SignedSource<<cb4b17d045247b1120222914f2052165>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,6 +14,9 @@ import { FragmentRefs } from "relay-runtime";
 export type PosterDetailsHovercardContentsBodyFragment$data = {
   readonly id: string;
   readonly joined: string | null | undefined;
+  readonly location?: {
+    readonly name: string;
+  } | null | undefined;
   readonly name: string | null | undefined;
   readonly organizationKind?: OrganizationKind | null | undefined;
   readonly profilePicture: {
@@ -26,7 +29,15 @@ export type PosterDetailsHovercardContentsBodyFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"PosterDetailsHovercardContentsBodyFragment">;
 };
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "name",
+  "storageKey": null
+};
+return {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -39,13 +50,7 @@ const node: ReaderFragment = {
       "name": "id",
       "storageKey": null
     },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "name",
-      "storageKey": null
-    },
+    (v0/*: any*/),
     {
       "alias": null,
       "args": null,
@@ -61,6 +66,25 @@ const node: ReaderFragment = {
         }
       ],
       "storageKey": null
+    },
+    {
+      "kind": "InlineFragment",
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "Location",
+          "kind": "LinkedField",
+          "name": "location",
+          "plural": false,
+          "selections": [
+            (v0/*: any*/)
+          ],
+          "storageKey": null
+        }
+      ],
+      "type": "Person",
+      "abstractKey": null
     },
     {
       "kind": "InlineFragment",
@@ -87,7 +111,8 @@ const node: ReaderFragment = {
   "type": "Actor",
   "abstractKey": "__isActor"
 };
+})();
 
-(node as any).hash = "60b12a907152cbef0e9040e27ec0b987";
+(node as any).hash = "5f4583c29cd1f6d382c602df8e7b188a";
 
 export default node;

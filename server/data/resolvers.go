@@ -13,11 +13,17 @@ type Node interface {
 	GetType() string
 }
 
+type Location struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+}
+
 type Person struct {
-	ID             string `json:"id"`
-	Name           string `json:"name"`
-	ProfilePicture *Image `json:"profilePicture"`
-	Joined         string `json:"joined"`
+	ID             string    `json:"id"`
+	Name           string    `json:"name"`
+	ProfilePicture *Image    `json:"profilePicture"`
+	Location       *Location `json:"location"`
+	Joined         string    `json:"joined"`
 }
 
 func (p *Person) GetID() string {
@@ -32,8 +38,8 @@ type Organization struct {
 	ID               string `json:"id"`
 	Name             string `json:"name"`
 	ProfilePicture   *Image `json:"profilePicture"`
-	Joined           string `json:"joined"`
 	OrganizationKind string `json:"organizationKind"`
+	Joined           string `json:"joined"`
 }
 
 func (o *Organization) GetID() string {
@@ -74,6 +80,10 @@ var nodes = []Node{
 		ProfilePicture: &Image{
 			URL: "/assets/a.png",
 		},
+		Location: &Location{
+			ID:   "viewer-location",
+			Name: "Wheresoever You Are",
+		},
 		Joined: "2025-10-27T00:00:00.000Z",
 	},
 	&Person{
@@ -81,6 +91,10 @@ var nodes = []Node{
 		Name: "Chris P. Bacon",
 		ProfilePicture: &Image{
 			URL: "/assets/pig.png",
+		},
+		Location: &Location{
+			ID:   "10",
+			Name: "Poultropolis",
 		},
 		Joined: "2025-10-27T00:00:00.000Z",
 	},

@@ -51,6 +51,11 @@ const PosterDetailsHovercardContentsBodyFragment = graphql`
     profilePicture {
       ...ImageFragment
     }
+    ... on Person {
+      location {
+        name
+      }
+    }
     ... on Organization {
       organizationKind
     }
@@ -79,6 +84,7 @@ function PosterDetailsHovercardContentsBody({
         <li>
           Joined <Timestamp time={data?.joined} />
         </li>
+        {data.location != null && <li>{data.location.name}</li>}
         {data.organizationKind != null && (
           <li>
             <OrganizationKind kind={data.organizationKind} />

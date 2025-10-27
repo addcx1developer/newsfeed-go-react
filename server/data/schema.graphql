@@ -1,10 +1,10 @@
 """"""
 interface Actor {
   """"""
-  profilePicture: Image
+  name: String
 
   """"""
-  name: String
+  profilePicture: Image
 }
 
 """"""
@@ -20,18 +20,6 @@ type Query {
 
   """"""
   viewer: Viewer
-}
-
-""""""
-enum Category {
-  """"""
-  ALL
-
-  """"""
-  EDUCATION
-
-  """"""
-  NEWS
 }
 
 """"""
@@ -59,15 +47,6 @@ type Story implements Node {
 }
 
 """"""
-type Image {
-  """"""
-  altText: String
-
-  """"""
-  url(height: Int, width: Int): String!
-}
-
-""""""
 interface Node {
   """"""
   id: ID!
@@ -92,4 +71,25 @@ type Person implements Node & Actor {
 
   """"""
   profilePicture: Image
+}
+
+""""""
+type Image {
+  """"""
+  altText: String
+
+  """"""
+  url(width: Int, height: Int): String!
+}
+
+""""""
+enum Category {
+  """"""
+  ALL
+
+  """"""
+  EDUCATION
+
+  """"""
+  NEWS
 }

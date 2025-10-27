@@ -1,6 +1,6 @@
 /**
- * @generated SignedSource<<75fb1eaa7a51c419e3d67f17c68b094f>>
- * @relayHash 6cdca9993ad83f8dbd8fc88d29e42b56
+ * @generated SignedSource<<a9a42f45902247c3fc7d81f60f8e369d>>
+ * @relayHash 32881a72f7ef33e59844b8f0df5b0242
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,15 +9,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-// @relayRequestID 0f02aefe3f32f3afbfcb7160a38f13ebba62c6929b01bcf0ef47100f7d3ee064
+// @relayRequestID 7bcda182c69c8e8e7dc420034609d6b2f3975c714d79d2ec4b1a8618573a9b15
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type NewsfeedQuery$variables = Record<PropertyKey, never>;
 export type NewsfeedQuery$data = {
-  readonly topStory: {
+  readonly topStories: ReadonlyArray<{
+    readonly id: string;
     readonly " $fragmentSpreads": FragmentRefs<"StoryFragment">;
-  } | null | undefined;
+  } | null | undefined> | null | undefined;
 };
 export type NewsfeedQuery = {
   response: NewsfeedQuery$data;
@@ -29,14 +30,14 @@ var v0 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "altText",
+  "name": "id",
   "storageKey": null
 },
 v1 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "id",
+  "name": "altText",
   "storageKey": null
 };
 return {
@@ -51,9 +52,10 @@ return {
         "args": null,
         "concreteType": "Story",
         "kind": "LinkedField",
-        "name": "topStory",
-        "plural": false,
+        "name": "topStories",
+        "plural": true,
         "selections": [
+          (v0/*: any*/),
           {
             "args": null,
             "kind": "FragmentSpread",
@@ -77,9 +79,10 @@ return {
         "args": null,
         "concreteType": "Story",
         "kind": "LinkedField",
-        "name": "topStory",
-        "plural": false,
+        "name": "topStories",
+        "plural": true,
         "selections": [
+          (v0/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -153,14 +156,14 @@ return {
                     "name": "url",
                     "storageKey": "url(height:60,width:60)"
                   },
-                  (v0/*: any*/)
+                  (v1/*: any*/)
                 ],
                 "storageKey": null
               },
               {
                 "kind": "InlineFragment",
                 "selections": [
-                  (v1/*: any*/)
+                  (v0/*: any*/)
                 ],
                 "type": "Node",
                 "abstractKey": "__isNode"
@@ -189,18 +192,17 @@ return {
                 "name": "url",
                 "storageKey": "url(width:400)"
               },
-              (v0/*: any*/)
+              (v1/*: any*/)
             ],
             "storageKey": null
-          },
-          (v1/*: any*/)
+          }
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "id": "0f02aefe3f32f3afbfcb7160a38f13ebba62c6929b01bcf0ef47100f7d3ee064",
+    "id": "7bcda182c69c8e8e7dc420034609d6b2f3975c714d79d2ec4b1a8618573a9b15",
     "metadata": {},
     "name": "NewsfeedQuery",
     "operationKind": "query",
@@ -209,6 +211,6 @@ return {
 };
 })();
 
-(node as any).hash = "65c357bf80ef742b634fe4d5946d1b3a";
+(node as any).hash = "06e6b6b9d307eae64894bc47ffa26664";
 
 export default node;

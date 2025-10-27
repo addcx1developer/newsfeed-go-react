@@ -78,22 +78,37 @@ var nodes = []Node{
 		CreatedAt: "2025-10-27T00:00:00.000Z",
 	},
 	&Story{
-		ID:       "3",
-		Title:    "Why did the chicken cross the road? To get to the other side!",
-		Summary:  "Chickens are curious animals and will often explore their surroundings, including crossing roads if the opportunity arises. It is important to note that chickens are intelligent and adaptable animals, and the specific reasons for any given chicken crossing the road may vary depending on the individual and its circumstances.",
-		Category: "EDUCATION",
+		ID:    "3",
+		Title: "Why did the chicken cross the road? To get to the other side!",
+		Thumbnail: &Image{
+			URL: "/assets/chicken.png",
+		},
+		Summary:   "Chickens are curious animals and will often explore their surroundings, including crossing roads if the opportunity arises. It is important to note that chickens are intelligent and adaptable animals, and the specific reasons for any given chicken crossing the road may vary depending on the individual and its circumstances.",
+		Category:  "EDUCATION",
+		AuthorID:  "1",
+		CreatedAt: "2025-10-27T00:00:00.000Z",
 	},
 	&Story{
-		ID:       "4",
-		Title:    "New Hedgehog Species Discovered",
-		Summary:  "Breaking news! Scientists have just announced the discovery of a new species of hedgehog, and you won't believe what makes this species unique.\n \n     According to the researchers, the new hedgehogs, which have been named 'sparklehogs,' are distinguished by their ability to produce rainbow-colored sparks from their spikes when they are feeling threatened.\n     \n     But that's not all! The sparklehogs have also been observed using their sparkling spikes to communicate with one another, creating dazzling light shows in the process.\n     \n     'We've never seen anything like it,' said lead researcher Dr. Maria Hernandez. 'These hedgehogs are truly one of a kind.'",
-		Category: "NEWS",
+		ID:    "4",
+		Title: "New Hedgehog Species Discovered",
+		Thumbnail: &Image{
+			URL: "/assets/hedgehog.png",
+		},
+		Summary:   "Breaking news! Scientists have just announced the discovery of a new species of hedgehog, and you won't believe what makes this species unique.\n \n     According to the researchers, the new hedgehogs, which have been named 'sparklehogs,' are distinguished by their ability to produce rainbow-colored sparks from their spikes when they are feeling threatened.\n     \n     But that's not all! The sparklehogs have also been observed using their sparkling spikes to communicate with one another, creating dazzling light shows in the process.\n     \n     'We've never seen anything like it,' said lead researcher Dr. Maria Hernandez. 'These hedgehogs are truly one of a kind.'",
+		Category:  "NEWS",
+		AuthorID:  "1",
+		CreatedAt: "2025-10-27T00:00:00.000Z",
 	},
 	&Story{
-		ID:       "story6",
-		Title:    "What is my cat trying to tell me?",
-		Summary:  "I just had the most surreal conversation with my cat. I was talking to her about my day and she just stared at me with this really intense look in her eyes and meowed. I have no idea what she was trying to say, but I have a feeling she was trying to impart some deep wisdom on me. Or maybe she just wanted more treats. Either way, it was a very interesting conversation. #catconvo #felinewisdom",
-		Category: "ALL",
+		ID:    "story6",
+		Title: "What is my cat trying to tell me?",
+		Thumbnail: &Image{
+			URL: "/assets/cat.png",
+		},
+		Summary:   "I just had the most surreal conversation with my cat. I was talking to her about my day and she just stared at me with this really intense look in her eyes and meowed. I have no idea what she was trying to say, but I have a feeling she was trying to impart some deep wisdom on me. Or maybe she just wanted more treats. Either way, it was a very interesting conversation. #catconvo #felinewisdom",
+		Category:  "ALL",
+		AuthorID:  "1",
+		CreatedAt: "2025-10-27T00:00:00.000Z",
 	},
 }
 
@@ -205,15 +220,17 @@ func topStoriesResolver(p graphql.ResolveParams) (interface{}, error) {
 	var stories []*Story
 
 	for _, node := range nodes {
-		story, ok := node.(*Story)
-		if !ok {
-			continue
+		if story, ok := node.(*Story); ok {
+			stories = append(stories, story)
 		}
-		stories = append(stories, story)
 	}
 
 	if len(stories) > 3 {
 		stories = stories[:3]
+	}
+
+	if stories == nil {
+		stories = []*Story{}
 	}
 
 	return stories, nil

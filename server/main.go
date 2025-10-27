@@ -7,25 +7,79 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"sync"
+	"time"
 
 	"github.com/addcx1developer/newsfeed-go-react/server/data"
+	"github.com/fsnotify/fsnotify"
 	"github.com/go-chi/chi/v5"
 	"github.com/graphql-go/handler"
 )
 
-var persistedQueries map[string]string
+var (
+	persistedQueries map[string]string
+	mu               sync.RWMutex
+)
 
 func loadPersistedQueries(path string) {
 	dataBytes, err := os.ReadFile(path)
 	if err != nil {
-		log.Fatal("Failed to load persisted queries:", err)
+		log.Println("Failed to load persisted queries:", err)
+		return
 	}
 
-	if err := json.Unmarshal(dataBytes, &persistedQueries); err != nil {
-		log.Fatal("Invalid persisted queries JSON:", err)
+	var queries map[string]string
+	if err := json.Unmarshal(dataBytes, &queries); err != nil {
+		log.Println("Invalid persisted queries JSON:", err)
+		return
 	}
 
-	log.Printf("Loaded %d persisted queries\n", len(persistedQueries))
+	mu.Lock()
+	persistedQueries = queries
+	mu.Unlock()
+
+	log.Printf("Loaded %d persisted queries\n", len(queries))
+}
+
+func watchPersistedQueries(path string) {
+	watcher, err := fsnotify.NewWatcher()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer watcher.Close()
+
+	err = watcher.Add(path)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var debounceTimer *time.Timer
+	const debounceDelay = 100 * time.Millisecond
+
+	go func() {
+		for {
+			select {
+			case event, ok := <-watcher.Events:
+				if !ok {
+					return
+				}
+				if event.Op&fsnotify.Write == fsnotify.Write {
+					if debounceTimer != nil {
+						debounceTimer.Stop()
+					}
+					debounceTimer = time.AfterFunc(debounceDelay, func() {
+						log.Println("Persisted queries file changed, reloading...")
+						loadPersistedQueries(path)
+					})
+				}
+			case err, ok := <-watcher.Errors:
+				if !ok {
+					return
+				}
+				log.Println("Watcher error:", err)
+			}
+		}
+	}()
 }
 
 func persistedHandler(h http.Handler) http.Handler {
@@ -38,7 +92,10 @@ func persistedHandler(h http.Handler) http.Handler {
 			}
 
 			if docID, ok := body["doc_id"].(string); ok && body["query"] == nil {
-				if query, found := persistedQueries[docID]; found {
+				mu.RLock()
+				query, found := persistedQueries[docID]
+				mu.RUnlock()
+				if found {
 					body["query"] = query
 				} else {
 					http.Error(w, "Persisted query not found", http.StatusNotFound)
@@ -56,7 +113,11 @@ func persistedHandler(h http.Handler) http.Handler {
 }
 
 func main() {
-	loadPersistedQueries("./persisted-queries.json")
+	const queriesPath = "./persisted-queries.json"
+
+	loadPersistedQueries(queriesPath)
+
+	watchPersistedQueries(queriesPath)
 
 	h := handler.New(&handler.Config{
 		Schema:     &data.Schema,
@@ -66,9 +127,11 @@ func main() {
 	})
 
 	r := chi.NewRouter()
+
 	r.Post("/graphql", func(w http.ResponseWriter, r *http.Request) {
 		persistedHandler(h).ServeHTTP(w, r)
 	})
+
 	r.Get("/graphql", func(w http.ResponseWriter, r *http.Request) {
 		persistedHandler(h).ServeHTTP(w, r)
 	})

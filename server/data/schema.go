@@ -4,15 +4,17 @@ import (
 	"github.com/graphql-go/graphql"
 )
 
-var nodeInterface *graphql.Interface
-var categoryType *graphql.Enum
-var imageType *graphql.Object
-var actorInterface *graphql.Interface
-var personType *graphql.Object
-var storyType *graphql.Object
-var viewerType *graphql.Object
-var queryType *graphql.Object
-var Schema graphql.Schema
+var (
+	nodeInterface  *graphql.Interface
+	categoryType   *graphql.Enum
+	imageType      *graphql.Object
+	actorInterface *graphql.Interface
+	personType     *graphql.Object
+	storyType      *graphql.Object
+	viewerType     *graphql.Object
+	queryType      *graphql.Object
+	Schema         graphql.Schema
+)
 
 func init() {
 	nodeInterface = graphql.NewInterface(graphql.InterfaceConfig{

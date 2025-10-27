@@ -5,3 +5,4 @@ scripts/*.go
 package-lock.json
 go.mod
 go.sum
+.air.toml

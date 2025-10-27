@@ -131,6 +131,9 @@ func init() {
 				Type:    graphql.NewNonNull(actorInterface),
 				Resolve: storyPosterResolver,
 			},
+			"createdAt": &graphql.Field{
+				Type: graphql.NewNonNull(graphql.String),
+			},
 		},
 		Interfaces: []*graphql.Interface{nodeInterface},
 	})

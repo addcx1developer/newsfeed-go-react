@@ -1,12 +1,9 @@
 import type { ReactElement } from "react";
 
 interface ImageProps {
-  image:
-    | {
-        url: string;
-      }
-    | null
-    | undefined;
+  image?: {
+    url: string;
+  } | null;
   width?: number;
   height?: number;
   className?: string;

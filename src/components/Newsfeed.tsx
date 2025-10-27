@@ -20,6 +20,7 @@ const NewsfeedQuery = graphql`
           url
         }
       }
+      createdAt
     }
   }
 `;

@@ -11,42 +11,27 @@ type Person implements Node & Actor {
 }
 
 """"""
-type Query {
+type Viewer {
   """"""
-  node(id: ID!): Node
-
-  """"""
-  topStories: [Story]
-
-  """"""
-  topStory(category: Category): Story
-
-  """"""
-  viewer: Viewer
+  actor: Actor
 }
 
 """"""
-interface Node {
+type Image {
   """"""
-  id: ID!
-}
-
-""""""
-enum Category {
-  """"""
-  ALL
+  altText: String
 
   """"""
-  EDUCATION
-
-  """"""
-  NEWS
+  url(width: Int, height: Int): String!
 }
 
 """"""
 type Story implements Node {
   """"""
   category: Category
+
+  """"""
+  createdAt: String!
 
   """"""
   id: ID!
@@ -65,18 +50,36 @@ type Story implements Node {
 }
 
 """"""
-type Viewer {
+interface Node {
   """"""
-  actor: Actor
+  id: ID!
 }
 
 """"""
-type Image {
+type Query {
   """"""
-  altText: String
+  node(id: ID!): Node
 
   """"""
-  url(width: Int, height: Int): String!
+  topStories: [Story]
+
+  """"""
+  topStory(category: Category): Story
+
+  """"""
+  viewer: Viewer
+}
+
+""""""
+enum Category {
+  """"""
+  ALL
+
+  """"""
+  EDUCATION
+
+  """"""
+  NEWS
 }
 
 """"""

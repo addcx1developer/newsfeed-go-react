@@ -4,8 +4,10 @@ import Image from "./Image";
 
 export interface PosterBylineProps {
   poster?: {
-    name: string | null | undefined;
-    profilePicture: { url: string } | null | undefined;
+    name?: string | null;
+    profilePicture?: {
+      url: string;
+    } | null;
   };
 }
 

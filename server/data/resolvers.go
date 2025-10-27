@@ -38,6 +38,7 @@ type Story struct {
 	Summary   string `json:"summary"`
 	Category  string `json:"category"`
 	AuthorID  string `json:"authorID"`
+	CreatedAt string `json:"createdAt"`
 }
 
 func (s *Story) GetID() string {
@@ -63,9 +64,10 @@ var nodes = []Node{
 			URL:     "/assets/yak.png",
 			AltText: "Portrait of Max the Yak by a local artist",
 		},
-		Summary:  "The annual Yak of the Year awards ceremony took place last night, and this year's winner is none other than Max, a beloved yak from the small town of Millville. Max, who is known for his friendly personality and hardworking nature, beat out stiff competition from other yaks in the region to take home the coveted title.\n \nAccording to the judges, Max stood out due to his exceptional contributions to the community. He has been used as a pack animal to help transport goods to and from the town's market, and has also been a reliable source of milk and wool for local farmers. In addition, Max has become something of a local celebrity, often posing for photos with tourists and participating in community events.",
-		Category: "ALL",
-		AuthorID: "the-viewer",
+		Summary:   "The annual Yak of the Year awards ceremony took place last night, and this year's winner is none other than Max, a beloved yak from the small town of Millville. Max, who is known for his friendly personality and hardworking nature, beat out stiff competition from other yaks in the region to take home the coveted title.\n \nAccording to the judges, Max stood out due to his exceptional contributions to the community. He has been used as a pack animal to help transport goods to and from the town's market, and has also been a reliable source of milk and wool for local farmers. In addition, Max has become something of a local celebrity, often posing for photos with tourists and participating in community events.",
+		Category:  "ALL",
+		AuthorID:  "the-viewer",
+		CreatedAt: "2025-10-27T00:00:00.000Z",
 	},
 	&Story{
 		ID:       "3",

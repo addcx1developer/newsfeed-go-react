@@ -1,6 +1,6 @@
 /**
- * @generated SignedSource<<820f917ce223ed907a5716f1adae7777>>
- * @relayHash 101e4d9b9755a51eb8b6ed9b037e31ef
+ * @generated SignedSource<<dd8256f7561daee0d305112a45d5a250>>
+ * @relayHash bacf5fcfed42d1ff49d46f5e380740c3
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,12 +9,13 @@
 /* eslint-disable */
 // @ts-nocheck
 
-// @relayRequestID 25e692130842e17a0a99e8c784bfb65bc5b563a19943c1227aaee4f85bf664be
+// @relayRequestID 117b8b8b038e79858cf4a7a1feef491aa18608c8cfb29eb73121a927a40592a1
 
 import { ConcreteRequest } from 'relay-runtime';
 export type NewsfeedQuery$variables = Record<PropertyKey, never>;
 export type NewsfeedQuery$data = {
   readonly topStory: {
+    readonly createdAt: string;
     readonly poster: {
       readonly name: string | null | undefined;
       readonly profilePicture: {
@@ -88,6 +89,13 @@ v6 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "createdAt",
+  "storageKey": null
+},
+v7 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 };
@@ -121,7 +129,8 @@ return {
               (v5/*: any*/)
             ],
             "storageKey": null
-          }
+          },
+          (v6/*: any*/)
         ],
         "storageKey": null
       }
@@ -166,7 +175,7 @@ return {
               {
                 "kind": "InlineFragment",
                 "selections": [
-                  (v6/*: any*/)
+                  (v7/*: any*/)
                 ],
                 "type": "Node",
                 "abstractKey": "__isNode"
@@ -174,14 +183,15 @@ return {
             ],
             "storageKey": null
           },
-          (v6/*: any*/)
+          (v6/*: any*/),
+          (v7/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "id": "25e692130842e17a0a99e8c784bfb65bc5b563a19943c1227aaee4f85bf664be",
+    "id": "117b8b8b038e79858cf4a7a1feef491aa18608c8cfb29eb73121a927a40592a1",
     "metadata": {},
     "name": "NewsfeedQuery",
     "operationKind": "query",
@@ -190,6 +200,6 @@ return {
 };
 })();
 
-(node as any).hash = "fb0e6147c3f02eef42a9333dd963c709";
+(node as any).hash = "103d30f28341734f831c9cab2f2d4292";
 
 export default node;

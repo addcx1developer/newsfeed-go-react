@@ -1,6 +1,6 @@
 /**
- * @generated SignedSource<<71e09a85c3f8fb3fe08ad36902e622a5>>
- * @relayHash cbf5ad8384a715c59b0d025c0482a203
+ * @generated SignedSource<<75fb1eaa7a51c419e3d67f17c68b094f>>
+ * @relayHash 6cdca9993ad83f8dbd8fc88d29e42b56
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,7 +9,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-// @relayRequestID 981920e7b62e02fc2915ca71ed17e1c9389d8c57e83795029ce20741547efdd9
+// @relayRequestID 0f02aefe3f32f3afbfcb7160a38f13ebba62c6929b01bcf0ef47100f7d3ee064
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
@@ -25,22 +25,13 @@ export type NewsfeedQuery = {
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = [
-  {
-    "alias": null,
-    "args": null,
-    "kind": "ScalarField",
-    "name": "url",
-    "storageKey": null
-  },
-  {
-    "alias": null,
-    "args": null,
-    "kind": "ScalarField",
-    "name": "altText",
-    "storageKey": null
-  }
-],
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "altText",
+  "storageKey": null
+},
 v1 = {
   "alias": null,
   "args": null,
@@ -143,7 +134,27 @@ return {
                 "kind": "LinkedField",
                 "name": "profilePicture",
                 "plural": false,
-                "selections": (v0/*: any*/),
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": [
+                      {
+                        "kind": "Literal",
+                        "name": "height",
+                        "value": 60
+                      },
+                      {
+                        "kind": "Literal",
+                        "name": "width",
+                        "value": 60
+                      }
+                    ],
+                    "kind": "ScalarField",
+                    "name": "url",
+                    "storageKey": "url(height:60,width:60)"
+                  },
+                  (v0/*: any*/)
+                ],
                 "storageKey": null
               },
               {
@@ -164,7 +175,22 @@ return {
             "kind": "LinkedField",
             "name": "thumbnail",
             "plural": false,
-            "selections": (v0/*: any*/),
+            "selections": [
+              {
+                "alias": null,
+                "args": [
+                  {
+                    "kind": "Literal",
+                    "name": "width",
+                    "value": 400
+                  }
+                ],
+                "kind": "ScalarField",
+                "name": "url",
+                "storageKey": "url(width:400)"
+              },
+              (v0/*: any*/)
+            ],
             "storageKey": null
           },
           (v1/*: any*/)
@@ -174,7 +200,7 @@ return {
     ]
   },
   "params": {
-    "id": "981920e7b62e02fc2915ca71ed17e1c9389d8c57e83795029ce20741547efdd9",
+    "id": "0f02aefe3f32f3afbfcb7160a38f13ebba62c6929b01bcf0ef47100f7d3ee064",
     "metadata": {},
     "name": "NewsfeedQuery",
     "operationKind": "query",

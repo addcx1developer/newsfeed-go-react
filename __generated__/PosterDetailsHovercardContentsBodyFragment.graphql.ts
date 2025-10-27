@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6cfb85a572688c3ac97c5db8c3655e31>>
+ * @generated SignedSource<<e1335613c5959f72a1db39b23dda90f3>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,24 +10,25 @@
 
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type PosterBylineFragment$data = {
+export type PosterDetailsHovercardContentsBodyFragment$data = {
   readonly id: string;
+  readonly joined: string | null | undefined;
   readonly name: string | null | undefined;
   readonly profilePicture: {
     readonly " $fragmentSpreads": FragmentRefs<"ImageFragment">;
   } | null | undefined;
-  readonly " $fragmentType": "PosterBylineFragment";
+  readonly " $fragmentType": "PosterDetailsHovercardContentsBodyFragment";
 };
-export type PosterBylineFragment$key = {
-  readonly " $data"?: PosterBylineFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"PosterBylineFragment">;
+export type PosterDetailsHovercardContentsBodyFragment$key = {
+  readonly " $data"?: PosterDetailsHovercardContentsBodyFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"PosterDetailsHovercardContentsBodyFragment">;
 };
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "PosterBylineFragment",
+  "name": "PosterDetailsHovercardContentsBodyFragment",
   "selections": [
     {
       "alias": null,
@@ -52,22 +53,18 @@ const node: ReaderFragment = {
       "plural": false,
       "selections": [
         {
-          "args": [
-            {
-              "kind": "Literal",
-              "name": "height",
-              "value": 60
-            },
-            {
-              "kind": "Literal",
-              "name": "width",
-              "value": 60
-            }
-          ],
+          "args": null,
           "kind": "FragmentSpread",
           "name": "ImageFragment"
         }
       ],
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "joined",
       "storageKey": null
     }
   ],
@@ -75,6 +72,6 @@ const node: ReaderFragment = {
   "abstractKey": "__isActor"
 };
 
-(node as any).hash = "0963a03bc2657c383dd019ca7e14fe61";
+(node as any).hash = "0d15de4b3875522625dec16f29610f30";
 
 export default node;

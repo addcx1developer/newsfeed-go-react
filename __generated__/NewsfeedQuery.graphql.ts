@@ -1,6 +1,6 @@
 /**
- * @generated SignedSource<<a9a42f45902247c3fc7d81f60f8e369d>>
- * @relayHash 32881a72f7ef33e59844b8f0df5b0242
+ * @generated SignedSource<<109f796c7091bb51e3c7bd17ee0000fc>>
+ * @relayHash aebbd0c19babde43569dbd6ea07914e4
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,7 +9,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-// @relayRequestID 7bcda182c69c8e8e7dc420034609d6b2f3975c714d79d2ec4b1a8618573a9b15
+// @relayRequestID 771404c96c59965638a7093136cf7f91182593d3aa6f1fa2460e39b99018715d
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
@@ -123,6 +123,7 @@ return {
                 "kind": "TypeDiscriminator",
                 "abstractKey": "__isActor"
               },
+              (v0/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -159,14 +160,6 @@ return {
                   (v1/*: any*/)
                 ],
                 "storageKey": null
-              },
-              {
-                "kind": "InlineFragment",
-                "selections": [
-                  (v0/*: any*/)
-                ],
-                "type": "Node",
-                "abstractKey": "__isNode"
               }
             ],
             "storageKey": null
@@ -202,7 +195,7 @@ return {
     ]
   },
   "params": {
-    "id": "7bcda182c69c8e8e7dc420034609d6b2f3975c714d79d2ec4b1a8618573a9b15",
+    "id": "771404c96c59965638a7093136cf7f91182593d3aa6f1fa2460e39b99018715d",
     "metadata": {},
     "name": "NewsfeedQuery",
     "operationKind": "query",

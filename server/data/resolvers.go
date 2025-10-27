@@ -17,6 +17,7 @@ type Person struct {
 	ID             string `json:"id"`
 	Name           string `json:"name"`
 	ProfilePicture *Image `json:"profilePicture"`
+	Joined         string `json:"joined"`
 }
 
 func (p *Person) GetID() string {
@@ -57,6 +58,7 @@ var nodes = []Node{
 		ProfilePicture: &Image{
 			URL: "/assets/a.png",
 		},
+		Joined: "2025-10-27T00:00:00.000Z",
 	},
 	&Person{
 		ID:   "1",
@@ -64,6 +66,7 @@ var nodes = []Node{
 		ProfilePicture: &Image{
 			URL: "/assets/pig.png",
 		},
+		Joined: "2025-10-27T00:00:00.000Z",
 	},
 	&Story{
 		ID:    "2",

@@ -75,11 +75,17 @@ func init() {
 	actorInterface = graphql.NewInterface(graphql.InterfaceConfig{
 		Name: "Actor",
 		Fields: graphql.Fields{
+			"id": &graphql.Field{
+				Type: graphql.NewNonNull(graphql.ID),
+			},
 			"name": &graphql.Field{
 				Type: graphql.String,
 			},
 			"profilePicture": &graphql.Field{
 				Type: imageType,
+			},
+			"joined": &graphql.Field{
+				Type: graphql.String,
 			},
 		},
 		ResolveType: func(p graphql.ResolveTypeParams) *graphql.Object {
@@ -103,6 +109,9 @@ func init() {
 			},
 			"profilePicture": &graphql.Field{
 				Type: imageType,
+			},
+			"joined": &graphql.Field{
+				Type: graphql.String,
 			},
 		},
 		Interfaces: []*graphql.Interface{

@@ -1,22 +1,20 @@
-import { useFragment, useLazyLoadQuery } from "react-relay";
+import { useFragment, usePreloadedQuery } from "react-relay";
 import { graphql } from "relay-runtime";
 
 import type { ReactElement } from "react";
+import type { PreloadedQuery } from "react-relay";
 
 import Image from "./Image";
 
-import type {
-  PosterDetailsHovercardContentsQuery$variables,
-  PosterDetailsHovercardContentsQuery as PosterDetailsHovercardContentsQueryType,
-} from "../../__generated__/PosterDetailsHovercardContentsQuery.graphql";
+import type { PosterDetailsHovercardContentsQuery as QueryType } from "../../__generated__/PosterDetailsHovercardContentsQuery.graphql";
 import type { PosterDetailsHovercardContentsBodyFragment$key } from "../../__generated__/PosterDetailsHovercardContentsBodyFragment.graphql";
 import Timestamp from "./Timestamp";
 
 interface PosterDetailsHovercardContentsProps {
-  posterID: PosterDetailsHovercardContentsQuery$variables["posterID"];
+  queryRef: PreloadedQuery<QueryType>;
 }
 
-const PosterDetailsHovercardContentsQuery = graphql`
+export const PosterDetailsHovercardContentsQuery = graphql`
   query PosterDetailsHovercardContentsQuery($posterID: ID!) {
     node(id: $posterID) {
       ... on Actor {
@@ -27,22 +25,22 @@ const PosterDetailsHovercardContentsQuery = graphql`
 `;
 
 export default function PosterDetailsHovercardContents({
-  posterID,
+  queryRef,
 }: PosterDetailsHovercardContentsProps): ReactElement {
-  const data = useLazyLoadQuery<PosterDetailsHovercardContentsQueryType>(
+  const data = usePreloadedQuery<QueryType>(
     PosterDetailsHovercardContentsQuery,
-    { posterID },
+    queryRef,
   );
 
   return (
     <div className="posterHovercard">
-      <PosterDetailsHovercardContentsBody poster={data.node} />
+      <PosterDetailsHovercardContentsBody poster={data.node!} />
     </div>
   );
 }
 
 interface PosterDetailsHovercardContentsBodyProps {
-  poster?: PosterDetailsHovercardContentsBodyFragment$key | null;
+  poster: PosterDetailsHovercardContentsBodyFragment$key;
 }
 
 const PosterDetailsHovercardContentsBodyFragment = graphql`

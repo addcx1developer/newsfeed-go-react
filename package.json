@@ -4,13 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write .",
     "print-schema": "go run ./scripts/printSchema.go",
-    "relay": "relay-compiler"
+    "relay": "relay-compiler",
+    "watch-relay": "relay-compiler --watch",
+    "watch-server": "air",
+    "watch-vite": "vite",
+    "dev": "concurrently npm:watch-* -c auto"
   },
   "dependencies": {
     "react": "^19.1.1",
@@ -27,6 +30,7 @@
     "@types/relay-runtime": "^19.0.3",
     "@vitejs/plugin-react": "^5.0.4",
     "babel-plugin-relay": "^20.1.1",
+    "concurrently": "^9.2.1",
     "eslint": "^9.36.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.22",

@@ -13,7 +13,8 @@
     "watch-relay": "relay-compiler --watch",
     "watch-server": "air",
     "watch-vite": "vite",
-    "dev": "concurrently npm:watch-* -c auto"
+    "dev": "concurrently npm:watch-* -c auto",
+    "prepare": "husky"
   },
   "dependencies": {
     "react": "^19.1.1",
@@ -36,6 +37,7 @@
     "eslint-plugin-react-refresh": "^0.4.22",
     "globals": "^16.4.0",
     "graphql": "^16.11.0",
+    "husky": "^9.1.7",
     "prettier": "^3.6.2",
     "relay-compiler": "^20.1.1",
     "typescript": "~5.9.3",

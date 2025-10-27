@@ -146,6 +146,15 @@ func init() {
 			"actor": &graphql.Field{
 				Type: actorInterface,
 			},
+			"contacts": &graphql.Field{
+				Type: graphql.NewList(actorInterface),
+				Args: graphql.FieldConfigArgument{
+					"search": &graphql.ArgumentConfig{
+						Type: graphql.String,
+					},
+				},
+				Resolve: contactsResolver,
+			},
 		},
 	})
 

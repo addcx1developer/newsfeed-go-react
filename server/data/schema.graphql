@@ -1,58 +1,10 @@
 """"""
-type Person implements Node & Actor {
+interface Actor {
   """"""
-  id: ID!
+  profilePicture: Image
 
   """"""
   name: String
-
-  """"""
-  profilePicture: Image
-}
-
-""""""
-type Viewer {
-  """"""
-  actor: Actor
-}
-
-""""""
-type Image {
-  """"""
-  altText: String
-
-  """"""
-  url(width: Int, height: Int): String!
-}
-
-""""""
-type Story implements Node {
-  """"""
-  category: Category
-
-  """"""
-  createdAt: String!
-
-  """"""
-  id: ID!
-
-  """"""
-  poster: Actor!
-
-  """"""
-  summary: String
-
-  """"""
-  thumbnail: Image
-
-  """"""
-  title: String!
-}
-
-""""""
-interface Node {
-  """"""
-  id: ID!
 }
 
 """"""
@@ -83,7 +35,58 @@ enum Category {
 }
 
 """"""
-interface Actor {
+type Story implements Node {
+  """"""
+  category: Category
+
+  """"""
+  createdAt: String!
+
+  """"""
+  id: ID!
+
+  """"""
+  poster: Actor!
+
+  """"""
+  summary: String
+
+  """"""
+  thumbnail: Image
+
+  """"""
+  title: String!
+}
+
+""""""
+type Image {
+  """"""
+  altText: String
+
+  """"""
+  url(height: Int, width: Int): String!
+}
+
+""""""
+interface Node {
+  """"""
+  id: ID!
+}
+
+""""""
+type Viewer {
+  """"""
+  actor: Actor
+
+  """"""
+  contacts(search: String): [Actor]
+}
+
+""""""
+type Person implements Node & Actor {
+  """"""
+  id: ID!
+
   """"""
   name: String
 

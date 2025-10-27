@@ -3,6 +3,7 @@ package data
 import (
 	"fmt"
 	"net/url"
+	"strings"
 
 	"github.com/graphql-go/graphql"
 )
@@ -55,6 +56,13 @@ var nodes = []Node{
 		Name: "A. D. Veloper",
 		ProfilePicture: &Image{
 			URL: "/assets/a.png",
+		},
+	},
+	&Person{
+		ID:   "1",
+		Name: "Chris P. Bacon",
+		ProfilePicture: &Image{
+			URL: "/assets/pig.png",
 		},
 	},
 	&Story{
@@ -209,4 +217,32 @@ func topStoriesResolver(p graphql.ResolveParams) (interface{}, error) {
 	}
 
 	return stories, nil
+}
+
+func contactsResolver(p graphql.ResolveParams) (interface{}, error) {
+	searchArg, _ := p.Args["search"].(string)
+	searchArg = strings.ToLower(searchArg)
+
+	var persons []*Person
+
+	for _, node := range nodes {
+		person, ok := node.(*Person)
+		if !ok || person.ID == "the-viewer" {
+			continue
+		}
+		persons = append(persons, person)
+	}
+
+	if searchArg == "" {
+		return persons, nil
+	}
+
+	var filtered []*Person
+	for _, person := range persons {
+		if strings.Contains(strings.ToLower(person.Name), searchArg) {
+			filtered = append(filtered, person)
+		}
+	}
+
+	return filtered, nil
 }

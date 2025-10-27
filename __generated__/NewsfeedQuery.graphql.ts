@@ -1,6 +1,6 @@
 /**
- * @generated SignedSource<<4961a72c9c5ad4f1d08e5401081aa6ab>>
- * @relayHash cf5ada3740395a8b4ee1f4cec7d66ccd
+ * @generated SignedSource<<71e09a85c3f8fb3fe08ad36902e622a5>>
+ * @relayHash cbf5ad8384a715c59b0d025c0482a203
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,7 +9,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-// @relayRequestID 909fa7cf535c2587b39854aac4665f8c4320dc55784fef849e03ef5dc9222b9c
+// @relayRequestID 981920e7b62e02fc2915ca71ed17e1c9389d8c57e83795029ce20741547efdd9
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
@@ -31,6 +31,13 @@ var v0 = [
     "args": null,
     "kind": "ScalarField",
     "name": "url",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "altText",
     "storageKey": null
   }
 ],
@@ -167,7 +174,7 @@ return {
     ]
   },
   "params": {
-    "id": "909fa7cf535c2587b39854aac4665f8c4320dc55784fef849e03ef5dc9222b9c",
+    "id": "981920e7b62e02fc2915ca71ed17e1c9389d8c57e83795029ce20741547efdd9",
     "metadata": {},
     "name": "NewsfeedQuery",
     "operationKind": "query",

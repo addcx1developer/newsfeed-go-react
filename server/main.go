@@ -8,10 +8,8 @@ import (
 	"net/http"
 	"os"
 	"sync"
-	"time"
 
 	"github.com/addcx1developer/newsfeed-go-react/server/data"
-	"github.com/fsnotify/fsnotify"
 	"github.com/go-chi/chi/v5"
 	"github.com/graphql-go/handler"
 )
@@ -39,47 +37,6 @@ func loadPersistedQueries(path string) {
 	mu.Unlock()
 
 	log.Printf("Loaded %d persisted queries\n", len(queries))
-}
-
-func watchPersistedQueries(path string) {
-	watcher, err := fsnotify.NewWatcher()
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer watcher.Close()
-
-	err = watcher.Add(path)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	var debounceTimer *time.Timer
-	const debounceDelay = 100 * time.Millisecond
-
-	go func() {
-		for {
-			select {
-			case event, ok := <-watcher.Events:
-				if !ok {
-					return
-				}
-				if event.Op&fsnotify.Write == fsnotify.Write {
-					if debounceTimer != nil {
-						debounceTimer.Stop()
-					}
-					debounceTimer = time.AfterFunc(debounceDelay, func() {
-						log.Println("Persisted queries file changed, reloading...")
-						loadPersistedQueries(path)
-					})
-				}
-			case err, ok := <-watcher.Errors:
-				if !ok {
-					return
-				}
-				log.Println("Watcher error:", err)
-			}
-		}
-	}()
 }
 
 func persistedHandler(h http.Handler) http.Handler {
@@ -116,8 +73,6 @@ func main() {
 	const queriesPath = "./persisted-queries.json"
 
 	loadPersistedQueries(queriesPath)
-
-	watchPersistedQueries(queriesPath)
 
 	h := handler.New(&handler.Config{
 		Schema:     &data.Schema,

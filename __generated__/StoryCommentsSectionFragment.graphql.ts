@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<89a57fa51a1a412e2d7a2c525070afb7>>
+ * @generated SignedSource<<63db918191be9ac4259e50bc5e6d63b5>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -22,6 +22,7 @@ export type StoryCommentsSectionFragment$data = {
       readonly hasNextPage: boolean | null | undefined;
     } | null | undefined;
   } | null | undefined;
+  readonly id: string;
   readonly " $fragmentType": "StoryCommentsSectionFragment";
 };
 export type StoryCommentsSectionFragment$key = {
@@ -29,24 +30,69 @@ export type StoryCommentsSectionFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"StoryCommentsSectionFragment">;
 };
 
-const node: ReaderFragment = {
-  "argumentDefinitions": [],
+import StoryCommentsSectionPaginationQuery_graphql from './StoryCommentsSectionPaginationQuery.graphql';
+
+const node: ReaderFragment = (function(){
+var v0 = [
+  "comments"
+],
+v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
+return {
+  "argumentDefinitions": [
+    {
+      "defaultValue": 3,
+      "kind": "LocalArgument",
+      "name": "count"
+    },
+    {
+      "defaultValue": null,
+      "kind": "LocalArgument",
+      "name": "cursor"
+    }
+  ],
   "kind": "Fragment",
-  "metadata": null,
+  "metadata": {
+    "connection": [
+      {
+        "count": "count",
+        "cursor": "cursor",
+        "direction": "forward",
+        "path": (v0/*: any*/)
+      }
+    ],
+    "refetch": {
+      "connection": {
+        "forward": {
+          "count": "count",
+          "cursor": "cursor"
+        },
+        "backward": null,
+        "path": (v0/*: any*/)
+      },
+      "fragmentPathInResult": [
+        "node"
+      ],
+      "operation": StoryCommentsSectionPaginationQuery_graphql,
+      "identifierInfo": {
+        "identifierField": "id",
+        "identifierQueryVariableName": "id"
+      }
+    }
+  },
   "name": "StoryCommentsSectionFragment",
   "selections": [
     {
-      "alias": null,
-      "args": [
-        {
-          "kind": "Literal",
-          "name": "first",
-          "value": 3
-        }
-      ],
+      "alias": "comments",
+      "args": null,
       "concreteType": "commentsConnection",
       "kind": "LinkedField",
-      "name": "comments",
+      "name": "__StoryCommentsSectionFragment_comments_connection",
       "plural": false,
       "selections": [
         {
@@ -65,19 +111,27 @@ const node: ReaderFragment = {
               "name": "node",
               "plural": false,
               "selections": [
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "id",
-                  "storageKey": null
-                },
+                (v1/*: any*/),
                 {
                   "args": null,
                   "kind": "FragmentSpread",
                   "name": "CommentFragment"
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "__typename",
+                  "storageKey": null
                 }
               ],
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "cursor",
               "storageKey": null
             }
           ],
@@ -97,18 +151,27 @@ const node: ReaderFragment = {
               "kind": "ScalarField",
               "name": "hasNextPage",
               "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "endCursor",
+              "storageKey": null
             }
           ],
           "storageKey": null
         }
       ],
-      "storageKey": "comments(first:3)"
-    }
+      "storageKey": null
+    },
+    (v1/*: any*/)
   ],
   "type": "Story",
   "abstractKey": null
 };
+})();
 
-(node as any).hash = "623aea3d09348623d170898c472f9531";
+(node as any).hash = "53cedc6acf9acbc1b8c6952399eae018";
 
 export default node;

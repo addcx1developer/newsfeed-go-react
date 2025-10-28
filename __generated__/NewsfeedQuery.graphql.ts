@@ -1,6 +1,6 @@
 /**
- * @generated SignedSource<<168a492700b9ebb347e35e70164660ad>>
- * @relayHash 9d214693acea9fba523376ac73174372
+ * @generated SignedSource<<d40bf2dce822b8738dd74d2230c6c957>>
+ * @relayHash f3043e42659259fa67cd23edf6921945
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,7 +9,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-// @relayRequestID 294f5edc7c06ccd768b211198e574209ad3e7db25a6ae33d09a10c097331bae0
+// @relayRequestID 9c98ffce9e5cdf4020d8a00e4c109e81ee0ad513820ccc1bd9e34fc32eb7b84e
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
@@ -37,9 +37,23 @@ v1 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "__typename",
+  "storageKey": null
+},
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "altText",
   "storageKey": null
-};
+},
+v3 = [
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 3
+  }
+];
 return {
   "fragment": {
     "argumentDefinitions": [],
@@ -112,13 +126,7 @@ return {
             "name": "poster",
             "plural": false,
             "selections": [
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "__typename",
-                "storageKey": null
-              },
+              (v1/*: any*/),
               {
                 "kind": "TypeDiscriminator",
                 "abstractKey": "__isActor"
@@ -157,7 +165,7 @@ return {
                     "name": "url",
                     "storageKey": "url(height:60,width:60)"
                   },
-                  (v1/*: any*/)
+                  (v2/*: any*/)
                 ],
                 "storageKey": null
               }
@@ -185,19 +193,13 @@ return {
                 "name": "url",
                 "storageKey": "url(width:400)"
               },
-              (v1/*: any*/)
+              (v2/*: any*/)
             ],
             "storageKey": null
           },
           {
             "alias": null,
-            "args": [
-              {
-                "kind": "Literal",
-                "name": "first",
-                "value": 3
-              }
-            ],
+            "args": (v3/*: any*/),
             "concreteType": "commentsConnection",
             "kind": "LinkedField",
             "name": "comments",
@@ -226,8 +228,16 @@ return {
                         "kind": "ScalarField",
                         "name": "text",
                         "storageKey": null
-                      }
+                      },
+                      (v1/*: any*/)
                     ],
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "cursor",
                     "storageKey": null
                   }
                 ],
@@ -247,12 +257,28 @@ return {
                     "kind": "ScalarField",
                     "name": "hasNextPage",
                     "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "endCursor",
+                    "storageKey": null
                   }
                 ],
                 "storageKey": null
               }
             ],
             "storageKey": "comments(first:3)"
+          },
+          {
+            "alias": null,
+            "args": (v3/*: any*/),
+            "filters": null,
+            "handle": "connection",
+            "key": "StoryCommentsSectionFragment_comments",
+            "kind": "LinkedHandle",
+            "name": "comments"
           }
         ],
         "storageKey": null
@@ -260,7 +286,7 @@ return {
     ]
   },
   "params": {
-    "id": "294f5edc7c06ccd768b211198e574209ad3e7db25a6ae33d09a10c097331bae0",
+    "id": "9c98ffce9e5cdf4020d8a00e4c109e81ee0ad513820ccc1bd9e34fc32eb7b84e",
     "metadata": {},
     "name": "NewsfeedQuery",
     "operationKind": "query",

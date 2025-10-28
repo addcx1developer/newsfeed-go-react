@@ -9,16 +9,12 @@ import type { SidebarQuery as SidebarQueryType } from "../../__generated__/Sideb
 import LoadingSpinner from "./LoadingSpinner";
 import Card from "./Card";
 import Image from "./Image";
+import ViewerProfile from "./ViewerProfile";
 
 const SidebarQuery = graphql`
   query SidebarQuery {
     viewer {
-      actor {
-        name
-        profilePicture {
-          url
-        }
-      }
+      ...ViewerProfileFragment
       contacts {
         id
         name
@@ -45,17 +41,7 @@ function SidebarContents(): ReactElement {
 
   return (
     <>
-      <Card dim={true}>
-        <div className="viewerProfile">
-          <img
-            src={data.viewer!.actor!.profilePicture!.url}
-            height="60"
-            width="60"
-          />
-          <div className="viewerProfile__name">{data.viewer!.actor!.name}</div>
-          <div className="viewerProfile__menu">⋯</div>
-        </div>
-      </Card>
+      <ViewerProfile viewer={data.viewer!} />
       <Card dim={true}>
         <h3>Contacts</h3>
         {data.viewer!.contacts!.map((contact) => (

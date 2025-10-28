@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8dffbcb1b41be8d792263d38dbe0ec39>>
+ * @generated SignedSource<<ec81e7be07861b140edc0ae171999a7f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,10 +13,7 @@ import { FragmentRefs } from "relay-runtime";
 export type ContactsListFragment$data = {
   readonly contacts: ReadonlyArray<{
     readonly id: string;
-    readonly name: string | null | undefined;
-    readonly profilePicture: {
-      readonly " $fragmentSpreads": FragmentRefs<"ImageFragment">;
-    } | null | undefined;
+    readonly " $fragmentSpreads": FragmentRefs<"ContactRowFragment">;
   } | null | undefined> | null | undefined;
   readonly " $fragmentType": "ContactsListFragment";
 };
@@ -47,27 +44,9 @@ const node: ReaderFragment = {
           "storageKey": null
         },
         {
-          "alias": null,
           "args": null,
-          "kind": "ScalarField",
-          "name": "name",
-          "storageKey": null
-        },
-        {
-          "alias": null,
-          "args": null,
-          "concreteType": "Image",
-          "kind": "LinkedField",
-          "name": "profilePicture",
-          "plural": false,
-          "selections": [
-            {
-              "args": null,
-              "kind": "FragmentSpread",
-              "name": "ImageFragment"
-            }
-          ],
-          "storageKey": null
+          "kind": "FragmentSpread",
+          "name": "ContactRowFragment"
         }
       ],
       "storageKey": null
@@ -77,6 +56,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "77147ddf300f983372708f089f9e58b9";
+(node as any).hash = "3c36ab9e0b34297d1cbbeba8904fdbe0";
 
 export default node;

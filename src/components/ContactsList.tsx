@@ -6,7 +6,7 @@ import type { ReactElement } from "react";
 import type { ContactsListFragment$key } from "../../__generated__/ContactsListFragment.graphql";
 
 import Card from "./Card";
-import Image from "./Image";
+import ContactRow from "./ContactRow";
 
 interface ContactsListProps {
   viewer: ContactsListFragment$key;
@@ -16,10 +16,7 @@ const ContactsListFragment = graphql`
   fragment ContactsListFragment on Viewer {
     contacts {
       id
-      name
-      profilePicture {
-        ...ImageFragment
-      }
+      ...ContactRowFragment
     }
   }
 `;
@@ -36,15 +33,7 @@ export default function ContactsList({
     <Card dim={true}>
       <h3>Contacts</h3>
       {data.contacts!.map((contact) => (
-        <div key={contact!.id} className="contactRow">
-          <Image
-            image={contact!.profilePicture}
-            width={60}
-            height={60}
-            className="contactRow__image"
-          />
-          <div className="contactRow__name">{contact!.name}</div>
-        </div>
+        <ContactRow key={contact!.id} contact={contact!} />
       ))}
     </Card>
   );

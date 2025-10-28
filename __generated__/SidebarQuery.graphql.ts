@@ -1,6 +1,6 @@
 /**
- * @generated SignedSource<<6b7ff8e4902950fff6d82bc71d69e8c1>>
- * @relayHash eff9caa1c3e8379732a7c3f22e774443
+ * @generated SignedSource<<0a51f60fb4a3fff77976ce7d74841e41>>
+ * @relayHash cfd00933be468af9c9215168c101c6f9
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,7 +9,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-// @relayRequestID a3c6e994cde56fc1c3227f10b36e5846347de3854eb8d05db31f7401a30405c7
+// @relayRequestID 103310e1d2c530f90b57b3a4abbc8021f85e6df69d2dcfbf03bc594cb9733097
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
@@ -135,6 +135,10 @@ return {
             "selections": [
               (v0/*: any*/),
               (v3/*: any*/),
+              {
+                "kind": "TypeDiscriminator",
+                "abstractKey": "__isActor"
+              },
               (v1/*: any*/),
               {
                 "alias": null,
@@ -164,7 +168,7 @@ return {
     ]
   },
   "params": {
-    "id": "a3c6e994cde56fc1c3227f10b36e5846347de3854eb8d05db31f7401a30405c7",
+    "id": "103310e1d2c530f90b57b3a4abbc8021f85e6df69d2dcfbf03bc594cb9733097",
     "metadata": {},
     "name": "SidebarQuery",
     "operationKind": "query",

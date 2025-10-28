@@ -1,6 +1,6 @@
 /**
- * @generated SignedSource<<e9073b910ed57fd4932bcd96ce2f713d>>
- * @relayHash f3799352c591fdd53768aea0d7ec9b1a
+ * @generated SignedSource<<6b7ff8e4902950fff6d82bc71d69e8c1>>
+ * @relayHash eff9caa1c3e8379732a7c3f22e774443
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,21 +9,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-// @relayRequestID e6fb8ac2d44afcad97ad0bfd6da4a146e565dc1ee31c1de7d8283cbe144c932a
+// @relayRequestID a3c6e994cde56fc1c3227f10b36e5846347de3854eb8d05db31f7401a30405c7
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type SidebarQuery$variables = Record<PropertyKey, never>;
 export type SidebarQuery$data = {
   readonly viewer: {
-    readonly contacts: ReadonlyArray<{
-      readonly id: string;
-      readonly name: string | null | undefined;
-      readonly profilePicture: {
-        readonly " $fragmentSpreads": FragmentRefs<"ImageFragment">;
-      } | null | undefined;
-    } | null | undefined> | null | undefined;
-    readonly " $fragmentSpreads": FragmentRefs<"ViewerProfileFragment">;
+    readonly " $fragmentSpreads": FragmentRefs<"ContactsListFragment" | "ViewerProfileFragment">;
   } | null | undefined;
 };
 export type SidebarQuery = {
@@ -36,7 +29,7 @@ var v0 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "id",
+  "name": "__typename",
   "storageKey": null
 },
 v1 = {
@@ -50,14 +43,14 @@ v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "__typename",
+  "name": "url",
   "storageKey": null
 },
 v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "url",
+  "name": "id",
   "storageKey": null
 };
 return {
@@ -81,33 +74,9 @@ return {
             "name": "ViewerProfileFragment"
           },
           {
-            "alias": null,
             "args": null,
-            "concreteType": null,
-            "kind": "LinkedField",
-            "name": "contacts",
-            "plural": true,
-            "selections": [
-              (v0/*: any*/),
-              (v1/*: any*/),
-              {
-                "alias": null,
-                "args": null,
-                "concreteType": "Image",
-                "kind": "LinkedField",
-                "name": "profilePicture",
-                "plural": false,
-                "selections": [
-                  {
-                    "args": null,
-                    "kind": "FragmentSpread",
-                    "name": "ImageFragment"
-                  }
-                ],
-                "storageKey": null
-              }
-            ],
-            "storageKey": null
+            "kind": "FragmentSpread",
+            "name": "ContactsListFragment"
           }
         ],
         "storageKey": null
@@ -138,7 +107,7 @@ return {
             "name": "actor",
             "plural": false,
             "selections": [
-              (v2/*: any*/),
+              (v0/*: any*/),
               (v1/*: any*/),
               {
                 "alias": null,
@@ -148,11 +117,11 @@ return {
                 "name": "profilePicture",
                 "plural": false,
                 "selections": [
-                  (v3/*: any*/)
+                  (v2/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v0/*: any*/)
+              (v3/*: any*/)
             ],
             "storageKey": null
           },
@@ -164,8 +133,8 @@ return {
             "name": "contacts",
             "plural": true,
             "selections": [
-              (v2/*: any*/),
               (v0/*: any*/),
+              (v3/*: any*/),
               (v1/*: any*/),
               {
                 "alias": null,
@@ -175,7 +144,7 @@ return {
                 "name": "profilePicture",
                 "plural": false,
                 "selections": [
-                  (v3/*: any*/),
+                  (v2/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -195,7 +164,7 @@ return {
     ]
   },
   "params": {
-    "id": "e6fb8ac2d44afcad97ad0bfd6da4a146e565dc1ee31c1de7d8283cbe144c932a",
+    "id": "a3c6e994cde56fc1c3227f10b36e5846347de3854eb8d05db31f7401a30405c7",
     "metadata": {},
     "name": "SidebarQuery",
     "operationKind": "query",
@@ -204,6 +173,6 @@ return {
 };
 })();
 
-(node as any).hash = "6688a5e0076a388a81dd95550bb71028";
+(node as any).hash = "98323673d712dc9b9a2225f53a05ad97";
 
 export default node;

@@ -6,6 +6,7 @@ import type { ReactElement } from "react";
 import type { StoryCommentsSectionFragment$key } from "../../__generated__/StoryCommentsSectionFragment.graphql";
 
 import Comment from "./Comment";
+import LoadMoreCommentsButton from "./LoadMoreCommentsButton";
 
 interface StoryCommentsSectionProps {
   story: StoryCommentsSectionFragment$key;
@@ -35,11 +36,18 @@ export default function StoryCommentsSection({
     story,
   );
 
+  const onLoadMore = () => {
+    /* TODO */
+  };
+
   return (
     <div>
       {data!.comments!.edges!.map((edge) => (
         <Comment key={edge!.node!.id} comment={edge!.node!} />
       ))}
+      {data!.comments!.pageInfo!.hasNextPage && (
+        <LoadMoreCommentsButton onClick={onLoadMore} />
+      )}
     </div>
   );
 }

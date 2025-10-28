@@ -1,136 +1,7 @@
 """"""
-interface Actor {
-  """"""
-  joined: String
-
-  """"""
-  id: ID!
-
-  """"""
-  name: String
-
-  """"""
-  profilePicture: Image
-}
-
-""""""
-type PageInfo {
-  """"""
-  endCursor: String
-
-  """"""
-  hasNextPage: Boolean
-
-  """"""
-  hasPreviousPage: Boolean
-
-  """"""
-  lastCursor: String
-
-  """"""
-  startCursor: String
-}
-
-""""""
-type Person implements Node & Actor {
-  """"""
-  id: ID!
-
-  """"""
-  joined: String
-
-  """"""
-  location: Location
-
-  """"""
-  name: String
-
-  """"""
-  profilePicture: Image
-}
-
-""""""
-type Location {
-  """"""
-  id: ID!
-
-  """"""
-  name: String!
-}
-
-""""""
-type Organization implements Node & Actor {
-  """"""
-  id: ID!
-
-  """"""
-  joined: String
-
-  """"""
-  name: String
-
-  """"""
-  organizationKind: OrganizationKind
-
-  """"""
-  profilePicture: Image
-}
-
-""""""
-enum OrganizationKind {
-  """"""
-  NONPROFIT
-
-  """"""
-  JOURNALISTIC
-}
-
-""""""
-type Viewer {
-  """"""
-  actor: Actor
-
-  """"""
-  contacts(search: String): [Actor]
-}
-
-""""""
 interface Node {
   """"""
   id: ID!
-}
-
-""""""
-enum Category {
-  """"""
-  ALL
-
-  """"""
-  EDUCATION
-
-  """"""
-  NEWS
-
-  """"""
-  COOKING
-}
-
-""""""
-type Image {
-  """"""
-  altText: String
-
-  """"""
-  url(width: Int, height: Int): String!
-}
-
-""""""
-type commentsEdge {
-  """"""
-  cursor: String
-
-  """"""
-  node: Comment
 }
 
 """"""
@@ -161,21 +32,111 @@ type Story implements Node {
 }
 
 """"""
-type commentsConnection {
+type Viewer {
   """"""
-  edges: [commentsEdge]
+  actor: Actor
+
+  """"""
+  contacts(search: String): [Actor]
+
+  """"""
+  newsfeedStories(after: String, category: Category, first: Int): storiesConnection
+}
+
+""""""
+interface Actor {
+  """"""
+  profilePicture: Image
+
+  """"""
+  joined: String
+
+  """"""
+  id: ID!
+
+  """"""
+  name: String
+}
+
+""""""
+type Organization implements Node & Actor {
+  """"""
+  id: ID!
+
+  """"""
+  joined: String
+
+  """"""
+  name: String
+
+  """"""
+  organizationKind: OrganizationKind
+
+  """"""
+  profilePicture: Image
+}
+
+""""""
+enum OrganizationKind {
+  """"""
+  NONPROFIT
+
+  """"""
+  JOURNALISTIC
+}
+
+""""""
+type storiesEdge {
+  """"""
+  cursor: String
+
+  """"""
+  node: Story
+}
+
+""""""
+type storiesConnection {
+  """"""
+  edges: [storiesEdge]
 
   """"""
   pageInfo: PageInfo
 }
 
 """"""
-type Comment {
+type Person implements Node & Actor {
   """"""
   id: ID!
 
   """"""
-  text: String
+  joined: String
+
+  """"""
+  location: Location
+
+  """"""
+  name: String
+
+  """"""
+  profilePicture: Image
+}
+
+""""""
+type PageInfo {
+  """"""
+  endCursor: String
+
+  """"""
+  hasNextPage: Boolean
+
+  """"""
+  hasPreviousPage: Boolean
+
+  """"""
+  lastCursor: String
+
+  """"""
+  startCursor: String
 }
 
 """"""
@@ -191,4 +152,64 @@ type Query {
 
   """"""
   viewer: Viewer
+}
+
+""""""
+type Comment {
+  """"""
+  id: ID!
+
+  """"""
+  text: String
+}
+
+""""""
+type commentsConnection {
+  """"""
+  edges: [commentsEdge]
+
+  """"""
+  pageInfo: PageInfo
+}
+
+""""""
+type Image {
+  """"""
+  altText: String
+
+  """"""
+  url(width: Int, height: Int): String!
+}
+
+""""""
+enum Category {
+  """"""
+  EDUCATION
+
+  """"""
+  NEWS
+
+  """"""
+  COOKING
+
+  """"""
+  ALL
+}
+
+""""""
+type commentsEdge {
+  """"""
+  cursor: String
+
+  """"""
+  node: Comment
+}
+
+""""""
+type Location {
+  """"""
+  id: ID!
+
+  """"""
+  name: String!
 }

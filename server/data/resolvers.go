@@ -475,6 +475,58 @@ func topStoriesResolver(p graphql.ResolveParams) (interface{}, error) {
 	return stories, nil
 }
 
+func newsfeedStoriesResolver(p graphql.ResolveParams) (interface{}, error) {
+	first, _ := p.Args["first"].(int)
+	afterStr, _ := p.Args["after"].(string)
+	category, _ := p.Args["category"].(string)
+
+	count := first
+	if count == 0 {
+		count = len(nodes)
+	}
+
+	after := 0
+	if afterStr != "" {
+		if n, err := strconv.Atoi(afterStr); err == nil {
+			after = n
+		}
+	}
+
+	var filtered []*Story
+	for _, n := range nodes {
+		story, ok := n.(*Story)
+		if !ok {
+			continue
+		}
+		if category == "" || category == "ALL" || story.Category == category {
+			filtered = append(filtered, story)
+		}
+	}
+
+	next := after + count
+	if next > len(filtered) {
+		next = len(filtered)
+	}
+
+	edges := make([]map[string]interface{}, next-after)
+	for i, story := range filtered[after:next] {
+		edges[i] = map[string]interface{}{
+			"node":   story,
+			"cursor": story.ID,
+		}
+	}
+
+	pageInfo := map[string]interface{}{
+		"hasNextPage": next < len(filtered),
+		"endCursor":   strconv.Itoa(next),
+	}
+
+	return map[string]interface{}{
+		"edges":    edges,
+		"pageInfo": pageInfo,
+	}, nil
+}
+
 func contactsResolver(p graphql.ResolveParams) (interface{}, error) {
 	searchArg, _ := p.Args["search"].(string)
 	searchArg = strings.ToLower(searchArg)

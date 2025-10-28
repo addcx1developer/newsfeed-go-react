@@ -288,6 +288,8 @@ func init() {
 		Interfaces: []*graphql.Interface{nodeInterface},
 	})
 
+	storiesConnectionType, _ := createConnectionType("stories", storyType)
+
 	viewerType = graphql.NewObject(graphql.ObjectConfig{
 		Name: "Viewer",
 		Fields: graphql.Fields{
@@ -302,6 +304,21 @@ func init() {
 					},
 				},
 				Resolve: contactsResolver,
+			},
+			"newsfeedStories": &graphql.Field{
+				Type: storiesConnectionType,
+				Args: graphql.FieldConfigArgument{
+					"first": &graphql.ArgumentConfig{
+						Type: graphql.Int,
+					},
+					"after": &graphql.ArgumentConfig{
+						Type: graphql.String,
+					},
+					"category": &graphql.ArgumentConfig{
+						Type: categoryType,
+					},
+				},
+				Resolve: newsfeedStoriesResolver,
 			},
 		},
 	})

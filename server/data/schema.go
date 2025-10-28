@@ -53,6 +53,9 @@ func init() {
 			"NEWS": &graphql.EnumValueConfig{
 				Value: "NEWS",
 			},
+			"COOKING": &graphql.EnumValueConfig{
+				Value: "COOKING",
+			},
 		},
 	})
 
@@ -61,6 +64,9 @@ func init() {
 		Values: graphql.EnumValueConfigMap{
 			"NONPROFIT": &graphql.EnumValueConfig{
 				Value: "NONPROFIT",
+			},
+			"JOURNALISTIC": &graphql.EnumValueConfig{
+				Value: "JOURNALISTIC",
 			},
 		},
 	})

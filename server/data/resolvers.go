@@ -98,6 +98,111 @@ var nodes = []Node{
 		},
 		Joined: "2025-10-27T00:00:00.000Z",
 	},
+	&Person{
+		ID:   "8",
+		Name: "Suzie Queue",
+		ProfilePicture: &Image{
+			URL: "/assets/blogger.png",
+		},
+		Location: &Location{
+			ID:   "11",
+			Name: "Venice",
+		},
+		Joined: "2025-10-28T00:00:00.000Z",
+	},
+	&Person{
+		ID:   "9",
+		Name: "Katrina Starer",
+		ProfilePicture: &Image{
+			URL: "/assets/cat_avatar.png",
+		},
+		Location: &Location{
+			ID:   "12",
+			Name: "New York",
+		},
+		Joined: "2025-10-28T00:00:00.000Z",
+	},
+	&Person{
+		ID:   "13",
+		Name: "Alexei Seligsteinwitz",
+		ProfilePicture: &Image{
+			URL: "/assets/alexei.png",
+		},
+		Location: &Location{
+			ID:   "14",
+			Name: "Mystery",
+		},
+		Joined: "2025-10-28T00:00:00.000Z",
+	},
+	&Person{
+		ID:   "15",
+		Name: "Jennifer Letuchyberg",
+		ProfilePicture: &Image{
+			URL: "/assets/j.png",
+		},
+		Location: &Location{
+			ID:   "16",
+			Name: "Zig Zag",
+		},
+		Joined: "2025-10-28T00:00:00.000Z",
+	},
+	&Person{
+		ID:   "17",
+		Name: "Paige Talaberg",
+		ProfilePicture: &Image{
+			URL: "/assets/p.png",
+		},
+		Location: &Location{
+			ID:   "18",
+			Name: "Boring",
+		},
+		Joined: "2025-10-28T00:00:00.000Z",
+	},
+	&Person{
+		ID:   "19",
+		Name: "Catalina Chaiman",
+		ProfilePicture: &Image{
+			URL: "/assets/c.png",
+		},
+		Location: &Location{
+			ID:   "20",
+			Name: "Weed",
+		},
+		Joined: "2025-10-28T00:00:00.000Z",
+	},
+	&Person{
+		ID:   "21",
+		Name: "Huy Li",
+		ProfilePicture: &Image{
+			URL: "/assets/h.png",
+		},
+		Location: &Location{
+			ID:   "22",
+			Name: "Cave Junction",
+		},
+		Joined: "2025-10-28T00:00:00.000Z",
+	},
+	&Person{
+		ID:   "30",
+		Name: "Brock Boc",
+		ProfilePicture: &Image{
+			URL: "/assets/chicken_lover.png",
+		},
+		Location: &Location{
+			ID:   "31",
+			Name: "Paradoxopolus",
+		},
+		Joined: "2025-10-28T00:00:00.000Z",
+	},
+	&Organization{
+		ID:   "6",
+		Name: "Gazelle Gazette",
+		ProfilePicture: &Image{
+			URL: "/assets/gazelle.png",
+		},
+		OrganizationKind: "JOURNALISTIC",
+		Joined:           "2025-10-28T00:00:00.000Z",
+	},
 	&Organization{
 		ID:   "7",
 		Name: "Baller Bovine Board",
@@ -139,8 +244,30 @@ var nodes = []Node{
 		},
 		Summary:   "Breaking news! Scientists have just announced the discovery of a new species of hedgehog, and you won't believe what makes this species unique.\n \n     According to the researchers, the new hedgehogs, which have been named 'sparklehogs,' are distinguished by their ability to produce rainbow-colored sparks from their spikes when they are feeling threatened.\n     \n     But that's not all! The sparklehogs have also been observed using their sparkling spikes to communicate with one another, creating dazzling light shows in the process.\n     \n     'We've never seen anything like it,' said lead researcher Dr. Maria Hernandez. 'These hedgehogs are truly one of a kind.'",
 		Category:  "NEWS",
-		AuthorID:  "1",
+		AuthorID:  "6",
 		CreatedAt: "2025-10-27T00:00:00.000Z",
+	},
+	&Story{
+		ID:    "5",
+		Title: "Onion Soup Recipe",
+		Thumbnail: &Image{
+			URL: "/assets/recipe.png",
+		},
+		Summary:   "I am so excited to share with you my all-time favorite recipe for French onion soup. I can't even begin to tell you how many times I've made this dish for my family and friends, and it never fails to impress.\n\n As a self-proclaimed wine mom, I always love finding new and creative ways to incorporate my favorite vintages into my cooking. And let me tell you, the dry white wine in this recipe really takes the flavor of the onions to the next level. Trust me, it's a game changer.\n \n But don't just take my word for it – give this recipe a try for yourself and see how it becomes a new staple in your household. Not only is it delicious, but it's also the perfect comfort food for those cold winter nights.\n \n So grab your wine glasses and let's get cooking!",
+		Category:  "COOKING",
+		AuthorID:  "8",
+		CreatedAt: "2025-10-28T00:00:00.000Z",
+	},
+	&Story{
+		ID:    "99",
+		Title: "Study: The egg came first, but only after the chicken",
+		Thumbnail: &Image{
+			URL: "/assets/puzzled_egg.png",
+		},
+		Summary:   `In a shocking new study, scientists have finally determined the age-old question of whether the chicken or the egg came first. And it turns out, the answer is both!\n      According to the research, the egg actually came first — but only after the chicken had already laid it.\n      \n      "We were amazed by the results," said lead researcher Dr. Janet Hennessy. "It seems that the chicken somehow managed to lay an egg before it even existed. It\'s a real chicken-and-egg paradox."\n      \n      The study, which involved observing hundreds of chickens on a farm, found that the birds would lay eggs and then, a short time later, a fully-formed chicken would emerge from the shell.\n      \n      "We always thought that the egg came first and the chicken was born from it," said Hennessy. "But it turns out, the chicken was there all along, just waiting to hatch."\n      \n      The findings have caused quite a stir in the scientific community, with many experts calling for further research to be done on the mysterious life cycle of the chicken.\n      \n      "It\'s a groundbreaking discovery that will change the way we think about the chicken and the egg," said Hennessy. "Who knows what other secrets these amazing creatures may be hiding?"`,
+		Category:  "NEWS",
+		AuthorID:  "30",
+		CreatedAt: "2025-10-28T00:00:00.000Z",
 	},
 	&Story{
 		ID:    "story6",
@@ -150,7 +277,7 @@ var nodes = []Node{
 		},
 		Summary:   "I just had the most surreal conversation with my cat. I was talking to her about my day and she just stared at me with this really intense look in her eyes and meowed. I have no idea what she was trying to say, but I have a feeling she was trying to impart some deep wisdom on me. Or maybe she just wanted more treats. Either way, it was a very interesting conversation. #catconvo #felinewisdom",
 		Category:  "ALL",
-		AuthorID:  "1",
+		AuthorID:  "9",
 		CreatedAt: "2025-10-27T00:00:00.000Z",
 	},
 }

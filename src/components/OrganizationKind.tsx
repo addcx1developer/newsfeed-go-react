@@ -16,6 +16,8 @@ function label(kind: OrganizationKind): string {
   switch (kind) {
     case "NONPROFIT":
       return "Non-Profit Organization";
+    case "JOURNALISTIC":
+      return "Journalistic Organization";
   }
   return "";
 }

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<cb4b17d045247b1120222914f2052165>>
+ * @generated SignedSource<<08c4b0b26c3a893a958a7751e60d7533>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,7 +9,7 @@
 // @ts-nocheck
 
 import { ReaderFragment } from 'relay-runtime';
-export type OrganizationKind = "NONPROFIT" | "%future added value";
+export type OrganizationKind = "JOURNALISTIC" | "NONPROFIT" | "%future added value";
 import { FragmentRefs } from "relay-runtime";
 export type PosterDetailsHovercardContentsBodyFragment$data = {
   readonly id: string;

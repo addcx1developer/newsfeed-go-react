@@ -8,6 +8,51 @@ type Location {
 }
 
 """"""
+type Organization implements Node & Actor {
+  """"""
+  id: ID!
+
+  """"""
+  joined: String
+
+  """"""
+  name: String
+
+  """"""
+  organizationKind: OrganizationKind
+
+  """"""
+  profilePicture: Image
+}
+
+""""""
+enum OrganizationKind {
+  """"""
+  NONPROFIT
+
+  """"""
+  JOURNALISTIC
+}
+
+""""""
+type Person implements Node & Actor {
+  """"""
+  id: ID!
+
+  """"""
+  joined: String
+
+  """"""
+  location: Location
+
+  """"""
+  name: String
+
+  """"""
+  profilePicture: Image
+}
+
+""""""
 type Query {
   """"""
   node(id: ID!): Node
@@ -23,18 +68,9 @@ type Query {
 }
 
 """"""
-interface Actor {
-  """"""
-  joined: String
-
+interface Node {
   """"""
   id: ID!
-
-  """"""
-  name: String
-
-  """"""
-  profilePicture: Image
 }
 
 """"""
@@ -47,12 +83,9 @@ enum Category {
 
   """"""
   NEWS
-}
 
-""""""
-interface Node {
   """"""
-  id: ID!
+  COOKING
 }
 
 """"""
@@ -80,27 +113,27 @@ type Story implements Node {
 }
 
 """"""
-type Person implements Node & Actor {
+type Image {
   """"""
-  id: ID!
+  altText: String
 
   """"""
-  joined: String
+  url(width: Int, height: Int): String!
+}
 
-  """"""
-  location: Location
-
+""""""
+interface Actor {
   """"""
   name: String
 
   """"""
   profilePicture: Image
-}
 
-""""""
-enum OrganizationKind {
   """"""
-  NONPROFIT
+  joined: String
+
+  """"""
+  id: ID!
 }
 
 """"""
@@ -110,31 +143,4 @@ type Viewer {
 
   """"""
   contacts(search: String): [Actor]
-}
-
-""""""
-type Organization implements Node & Actor {
-  """"""
-  id: ID!
-
-  """"""
-  joined: String
-
-  """"""
-  name: String
-
-  """"""
-  organizationKind: OrganizationKind
-
-  """"""
-  profilePicture: Image
-}
-
-""""""
-type Image {
-  """"""
-  altText: String
-
-  """"""
-  url(width: Int, height: Int): String!
 }

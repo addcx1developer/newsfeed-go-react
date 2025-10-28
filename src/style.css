@@ -256,7 +256,7 @@ body {
 }
 
 .searchInput input {
-  width: 100%;
+  width: 90%;
   padding: 12px;
   border-radius: 12px;
   font-size: 1.2rem;

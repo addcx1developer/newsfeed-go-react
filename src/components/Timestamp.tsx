@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 
 interface TimestampProps {
-  time?: string | null;
+  time: string;
 }
 
 export default function Timestamp({

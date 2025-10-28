@@ -26,7 +26,7 @@ export default function ContactRow({ contact }: ContactRowProps): ReactElement {
   return (
     <div className="contactRow">
       <Image
-        image={data.profilePicture}
+        image={data!.profilePicture!}
         width={60}
         height={60}
         className="contactRow__image"

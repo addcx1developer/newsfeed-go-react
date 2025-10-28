@@ -21,8 +21,8 @@ export default function Newsfeed(): ReactElement | null {
 
   return (
     <div className="newsfeed">
-      {stories?.map((story) => (
-        <Story key={story?.id} story={story} />
+      {stories!.map((story) => (
+        <Story key={story?.id} story={story!} />
       ))}
     </div>
   );

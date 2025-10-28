@@ -13,6 +13,8 @@ var (
 	actorInterface       *graphql.Interface
 	personType           *graphql.Object
 	organizationType     *graphql.Object
+	commentType          *graphql.Object
+	pageInfoType         *graphql.Object
 	storyType            *graphql.Object
 	viewerType           *graphql.Object
 	queryType            *graphql.Object
@@ -182,6 +184,69 @@ func init() {
 		},
 	})
 
+	commentType = graphql.NewObject(graphql.ObjectConfig{
+		Name: "Comment",
+		Fields: graphql.Fields{
+			"id": &graphql.Field{
+				Type: graphql.NewNonNull(graphql.ID),
+			},
+			"text": &graphql.Field{
+				Type: graphql.String,
+			},
+		},
+	})
+
+	pageInfoType = graphql.NewObject(graphql.ObjectConfig{
+		Name: "PageInfo",
+		Fields: graphql.Fields{
+			"startCursor": &graphql.Field{
+				Type: graphql.String,
+			},
+			"endCursor": &graphql.Field{
+				Type: graphql.String,
+			},
+			"lastCursor": &graphql.Field{
+				Type: graphql.String,
+			},
+			"hasNextPage": &graphql.Field{
+				Type: graphql.Boolean,
+			},
+			"hasPreviousPage": &graphql.Field{
+				Type: graphql.Boolean,
+			},
+		},
+	})
+
+	createConnectionType := func(name string, nodeType *graphql.Object) (connectionType, edgeType *graphql.Object) {
+		edgeType = graphql.NewObject(graphql.ObjectConfig{
+			Name: name + "Edge",
+			Fields: graphql.Fields{
+				"node": &graphql.Field{
+					Type: nodeType,
+				},
+				"cursor": &graphql.Field{
+					Type: graphql.String,
+				},
+			},
+		})
+
+		connectionType = graphql.NewObject(graphql.ObjectConfig{
+			Name: name + "Connection",
+			Fields: graphql.Fields{
+				"edges": &graphql.Field{
+					Type: graphql.NewList(edgeType),
+				},
+				"pageInfo": &graphql.Field{
+					Type: pageInfoType,
+				},
+			},
+		})
+
+		return connectionType, edgeType
+	}
+
+	commentsConnectionType, _ := createConnectionType("comments", commentType)
+
 	storyType = graphql.NewObject(graphql.ObjectConfig{
 		Name: "Story",
 		Fields: graphql.Fields{
@@ -203,6 +268,18 @@ func init() {
 			"poster": &graphql.Field{
 				Type:    graphql.NewNonNull(actorInterface),
 				Resolve: storyPosterResolver,
+			},
+			"comments": &graphql.Field{
+				Type: commentsConnectionType,
+				Args: graphql.FieldConfigArgument{
+					"first": &graphql.ArgumentConfig{
+						Type: graphql.Int,
+					},
+					"after": &graphql.ArgumentConfig{
+						Type: graphql.String,
+					},
+				},
+				Resolve: storyCommentsResolver,
 			},
 			"createdAt": &graphql.Field{
 				Type: graphql.NewNonNull(graphql.String),

@@ -6,7 +6,7 @@ import type { ReactElement } from "react";
 import type { ImageFragment$key } from "../../__generated__/ImageFragment.graphql";
 
 interface ImageProps {
-  image?: ImageFragment$key | null;
+  image: ImageFragment$key;
   width?: number;
   height?: number;
   className?: string;

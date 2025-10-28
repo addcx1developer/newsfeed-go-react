@@ -1,4 +1,55 @@
 """"""
+interface Actor {
+  """"""
+  joined: String
+
+  """"""
+  id: ID!
+
+  """"""
+  name: String
+
+  """"""
+  profilePicture: Image
+}
+
+""""""
+type PageInfo {
+  """"""
+  endCursor: String
+
+  """"""
+  hasNextPage: Boolean
+
+  """"""
+  hasPreviousPage: Boolean
+
+  """"""
+  lastCursor: String
+
+  """"""
+  startCursor: String
+}
+
+""""""
+type Person implements Node & Actor {
+  """"""
+  id: ID!
+
+  """"""
+  joined: String
+
+  """"""
+  location: Location
+
+  """"""
+  name: String
+
+  """"""
+  profilePicture: Image
+}
+
+""""""
 type Location {
   """"""
   id: ID!
@@ -35,36 +86,12 @@ enum OrganizationKind {
 }
 
 """"""
-type Person implements Node & Actor {
+type Viewer {
   """"""
-  id: ID!
+  actor: Actor
 
   """"""
-  joined: String
-
-  """"""
-  location: Location
-
-  """"""
-  name: String
-
-  """"""
-  profilePicture: Image
-}
-
-""""""
-type Query {
-  """"""
-  node(id: ID!): Node
-
-  """"""
-  topStories: [Story]
-
-  """"""
-  topStory(category: Category): Story
-
-  """"""
-  viewer: Viewer
+  contacts(search: String): [Actor]
 }
 
 """"""
@@ -89,9 +116,30 @@ enum Category {
 }
 
 """"""
+type Image {
+  """"""
+  altText: String
+
+  """"""
+  url(width: Int, height: Int): String!
+}
+
+""""""
+type commentsEdge {
+  """"""
+  cursor: String
+
+  """"""
+  node: Comment
+}
+
+""""""
 type Story implements Node {
   """"""
   category: Category
+
+  """"""
+  comments(first: Int, after: String): commentsConnection
 
   """"""
   createdAt: String!
@@ -113,34 +161,34 @@ type Story implements Node {
 }
 
 """"""
-type Image {
+type commentsConnection {
   """"""
-  altText: String
+  edges: [commentsEdge]
 
   """"""
-  url(width: Int, height: Int): String!
+  pageInfo: PageInfo
 }
 
 """"""
-interface Actor {
-  """"""
-  name: String
-
-  """"""
-  profilePicture: Image
-
-  """"""
-  joined: String
-
+type Comment {
   """"""
   id: ID!
+
+  """"""
+  text: String
 }
 
 """"""
-type Viewer {
+type Query {
   """"""
-  actor: Actor
+  node(id: ID!): Node
 
   """"""
-  contacts(search: String): [Actor]
+  topStories: [Story]
+
+  """"""
+  topStory(category: Category): Story
+
+  """"""
+  viewer: Viewer
 }

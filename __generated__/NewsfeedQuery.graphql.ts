@@ -1,6 +1,6 @@
 /**
- * @generated SignedSource<<109f796c7091bb51e3c7bd17ee0000fc>>
- * @relayHash aebbd0c19babde43569dbd6ea07914e4
+ * @generated SignedSource<<168a492700b9ebb347e35e70164660ad>>
+ * @relayHash 9d214693acea9fba523376ac73174372
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,7 +9,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-// @relayRequestID 771404c96c59965638a7093136cf7f91182593d3aa6f1fa2460e39b99018715d
+// @relayRequestID 294f5edc7c06ccd768b211198e574209ad3e7db25a6ae33d09a10c097331bae0
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
@@ -188,6 +188,71 @@ return {
               (v1/*: any*/)
             ],
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "first",
+                "value": 3
+              }
+            ],
+            "concreteType": "commentsConnection",
+            "kind": "LinkedField",
+            "name": "comments",
+            "plural": false,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "commentsEdge",
+                "kind": "LinkedField",
+                "name": "edges",
+                "plural": true,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "Comment",
+                    "kind": "LinkedField",
+                    "name": "node",
+                    "plural": false,
+                    "selections": [
+                      (v0/*: any*/),
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "text",
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "PageInfo",
+                "kind": "LinkedField",
+                "name": "pageInfo",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "hasNextPage",
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              }
+            ],
+            "storageKey": "comments(first:3)"
           }
         ],
         "storageKey": null
@@ -195,7 +260,7 @@ return {
     ]
   },
   "params": {
-    "id": "771404c96c59965638a7093136cf7f91182593d3aa6f1fa2460e39b99018715d",
+    "id": "294f5edc7c06ccd768b211198e574209ad3e7db25a6ae33d09a10c097331bae0",
     "metadata": {},
     "name": "NewsfeedQuery",
     "operationKind": "query",

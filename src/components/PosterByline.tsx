@@ -13,7 +13,7 @@ import PosterDetailsHovercardContents, {
 } from "./PosterDetailsHovercardContents";
 
 interface PosterBylineProps {
-  poster?: PosterBylineFragment$key;
+  poster: PosterBylineFragment$key;
 }
 
 const PosterBylineFragment = graphql`
@@ -49,7 +49,7 @@ export default function PosterByline({
   return (
     <div ref={hoverRef} className="byline">
       <Image
-        image={data.profilePicture}
+        image={data!.profilePicture!}
         width={60}
         height={60}
         className="byline__image"

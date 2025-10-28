@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 
 interface StorySummaryProps {
-  summary?: string | null;
+  summary: string;
 }
 
 export default function StorySummary({

@@ -3,6 +3,7 @@ package data
 import (
 	"fmt"
 	"net/url"
+	"strconv"
 	"strings"
 
 	"github.com/graphql-go/graphql"
@@ -56,13 +57,14 @@ type Image struct {
 }
 
 type Story struct {
-	ID        string `json:"id"`
-	Title     string `json:"title"`
-	Thumbnail *Image `json:"thumbnail"`
-	Summary   string `json:"summary"`
-	Category  string `json:"category"`
-	AuthorID  string `json:"authorID"`
-	CreatedAt string `json:"createdAt"`
+	ID        string     `json:"id"`
+	Title     string     `json:"title"`
+	Thumbnail *Image     `json:"thumbnail"`
+	Summary   string     `json:"summary"`
+	Category  string     `json:"category"`
+	AuthorID  string     `json:"authorID"`
+	Comments  []*Comment `json:"comments"`
+	CreatedAt string     `json:"createdAt"`
 }
 
 func (s *Story) GetID() string {
@@ -220,9 +222,43 @@ var nodes = []Node{
 			URL:     "/assets/yak.png",
 			AltText: "Portrait of Max the Yak by a local artist",
 		},
-		Summary:   "The annual Yak of the Year awards ceremony took place last night, and this year's winner is none other than Max, a beloved yak from the small town of Millville. Max, who is known for his friendly personality and hardworking nature, beat out stiff competition from other yaks in the region to take home the coveted title.\n \nAccording to the judges, Max stood out due to his exceptional contributions to the community. He has been used as a pack animal to help transport goods to and from the town's market, and has also been a reliable source of milk and wool for local farmers. In addition, Max has become something of a local celebrity, often posing for photos with tourists and participating in community events.",
-		Category:  "ALL",
-		AuthorID:  "7",
+		Summary:  "The annual Yak of the Year awards ceremony took place last night, and this year's winner is none other than Max, a beloved yak from the small town of Millville. Max, who is known for his friendly personality and hardworking nature, beat out stiff competition from other yaks in the region to take home the coveted title.\n \nAccording to the judges, Max stood out due to his exceptional contributions to the community. He has been used as a pack animal to help transport goods to and from the town's market, and has also been a reliable source of milk and wool for local farmers. In addition, Max has become something of a local celebrity, often posing for photos with tourists and participating in community events.",
+		Category: "ALL",
+		AuthorID: "7",
+		Comments: []*Comment{
+			{
+				ID:   "comment1",
+				Text: "So proud of our local yak",
+			},
+			{
+				ID:   "comment2",
+				Text: "I've been waiting my whole life for this moment",
+			},
+			{
+				ID:   "comment3",
+				Text: "What's a yak???",
+			},
+			{
+				ID:   "comment4",
+				Text: "We used to keep yaks in the old country",
+			},
+			{
+				ID:   "comment5",
+				Text: "It's a yak attack, this award is whack",
+			},
+			{
+				ID:   "comment6",
+				Text: "There are better yaks in every pasture of this country",
+			},
+			{
+				ID:   "comment7",
+				Text: "Yak yak yak yak yak yak yak yak",
+			},
+			{
+				ID:   "comment8",
+				Text: "He's a good yak, he saved my child from drowning",
+			},
+		},
 		CreatedAt: "2025-10-27T00:00:00.000Z",
 	},
 	&Story{
@@ -231,9 +267,19 @@ var nodes = []Node{
 		Thumbnail: &Image{
 			URL: "/assets/chicken.png",
 		},
-		Summary:   "Chickens are curious animals and will often explore their surroundings, including crossing roads if the opportunity arises. It is important to note that chickens are intelligent and adaptable animals, and the specific reasons for any given chicken crossing the road may vary depending on the individual and its circumstances.",
-		Category:  "EDUCATION",
-		AuthorID:  "1",
+		Summary:  "Chickens are curious animals and will often explore their surroundings, including crossing roads if the opportunity arises. It is important to note that chickens are intelligent and adaptable animals, and the specific reasons for any given chicken crossing the road may vary depending on the individual and its circumstances.",
+		Category: "EDUCATION",
+		AuthorID: "1",
+		Comments: []*Comment{
+			{
+				ID:   "comment9",
+				Text: "I never knew!",
+			},
+			{
+				ID:   "comment10",
+				Text: "This is a very deep joke.",
+			},
+		},
 		CreatedAt: "2025-10-27T00:00:00.000Z",
 	},
 	&Story{
@@ -242,9 +288,15 @@ var nodes = []Node{
 		Thumbnail: &Image{
 			URL: "/assets/hedgehog.png",
 		},
-		Summary:   "Breaking news! Scientists have just announced the discovery of a new species of hedgehog, and you won't believe what makes this species unique.\n \n     According to the researchers, the new hedgehogs, which have been named 'sparklehogs,' are distinguished by their ability to produce rainbow-colored sparks from their spikes when they are feeling threatened.\n     \n     But that's not all! The sparklehogs have also been observed using their sparkling spikes to communicate with one another, creating dazzling light shows in the process.\n     \n     'We've never seen anything like it,' said lead researcher Dr. Maria Hernandez. 'These hedgehogs are truly one of a kind.'",
-		Category:  "NEWS",
-		AuthorID:  "6",
+		Summary:  "Breaking news! Scientists have just announced the discovery of a new species of hedgehog, and you won't believe what makes this species unique.\n \n     According to the researchers, the new hedgehogs, which have been named 'sparklehogs,' are distinguished by their ability to produce rainbow-colored sparks from their spikes when they are feeling threatened.\n     \n     But that's not all! The sparklehogs have also been observed using their sparkling spikes to communicate with one another, creating dazzling light shows in the process.\n     \n     'We've never seen anything like it,' said lead researcher Dr. Maria Hernandez. 'These hedgehogs are truly one of a kind.'",
+		Category: "NEWS",
+		AuthorID: "6",
+		Comments: []*Comment{
+			{
+				ID:   "comment11",
+				Text: "Aren't hedges dark though???",
+			},
+		},
 		CreatedAt: "2025-10-27T00:00:00.000Z",
 	},
 	&Story{
@@ -253,9 +305,15 @@ var nodes = []Node{
 		Thumbnail: &Image{
 			URL: "/assets/recipe.png",
 		},
-		Summary:   "I am so excited to share with you my all-time favorite recipe for French onion soup. I can't even begin to tell you how many times I've made this dish for my family and friends, and it never fails to impress.\n\n As a self-proclaimed wine mom, I always love finding new and creative ways to incorporate my favorite vintages into my cooking. And let me tell you, the dry white wine in this recipe really takes the flavor of the onions to the next level. Trust me, it's a game changer.\n \n But don't just take my word for it – give this recipe a try for yourself and see how it becomes a new staple in your household. Not only is it delicious, but it's also the perfect comfort food for those cold winter nights.\n \n So grab your wine glasses and let's get cooking!",
-		Category:  "COOKING",
-		AuthorID:  "8",
+		Summary:  "I am so excited to share with you my all-time favorite recipe for French onion soup. I can't even begin to tell you how many times I've made this dish for my family and friends, and it never fails to impress.\n\n As a self-proclaimed wine mom, I always love finding new and creative ways to incorporate my favorite vintages into my cooking. And let me tell you, the dry white wine in this recipe really takes the flavor of the onions to the next level. Trust me, it's a game changer.\n \n But don't just take my word for it – give this recipe a try for yourself and see how it becomes a new staple in your household. Not only is it delicious, but it's also the perfect comfort food for those cold winter nights.\n \n So grab your wine glasses and let's get cooking!",
+		Category: "COOKING",
+		AuthorID: "8",
+		Comments: []*Comment{
+			{
+				ID:   "comment12",
+				Text: "I tried it with passionfruit instead of onions, it's a great substitution!",
+			},
+		},
 		CreatedAt: "2025-10-28T00:00:00.000Z",
 	},
 	&Story{
@@ -264,9 +322,15 @@ var nodes = []Node{
 		Thumbnail: &Image{
 			URL: "/assets/puzzled_egg.png",
 		},
-		Summary:   `In a shocking new study, scientists have finally determined the age-old question of whether the chicken or the egg came first. And it turns out, the answer is both!\n      According to the research, the egg actually came first — but only after the chicken had already laid it.\n      \n      "We were amazed by the results," said lead researcher Dr. Janet Hennessy. "It seems that the chicken somehow managed to lay an egg before it even existed. It\'s a real chicken-and-egg paradox."\n      \n      The study, which involved observing hundreds of chickens on a farm, found that the birds would lay eggs and then, a short time later, a fully-formed chicken would emerge from the shell.\n      \n      "We always thought that the egg came first and the chicken was born from it," said Hennessy. "But it turns out, the chicken was there all along, just waiting to hatch."\n      \n      The findings have caused quite a stir in the scientific community, with many experts calling for further research to be done on the mysterious life cycle of the chicken.\n      \n      "It\'s a groundbreaking discovery that will change the way we think about the chicken and the egg," said Hennessy. "Who knows what other secrets these amazing creatures may be hiding?"`,
-		Category:  "NEWS",
-		AuthorID:  "30",
+		Summary:  `In a shocking new study, scientists have finally determined the age-old question of whether the chicken or the egg came first. And it turns out, the answer is both!\n      According to the research, the egg actually came first — but only after the chicken had already laid it.\n      \n      "We were amazed by the results," said lead researcher Dr. Janet Hennessy. "It seems that the chicken somehow managed to lay an egg before it even existed. It\'s a real chicken-and-egg paradox."\n      \n      The study, which involved observing hundreds of chickens on a farm, found that the birds would lay eggs and then, a short time later, a fully-formed chicken would emerge from the shell.\n      \n      "We always thought that the egg came first and the chicken was born from it," said Hennessy. "But it turns out, the chicken was there all along, just waiting to hatch."\n      \n      The findings have caused quite a stir in the scientific community, with many experts calling for further research to be done on the mysterious life cycle of the chicken.\n      \n      "It\'s a groundbreaking discovery that will change the way we think about the chicken and the egg," said Hennessy. "Who knows what other secrets these amazing creatures may be hiding?"`,
+		Category: "NEWS",
+		AuthorID: "30",
+		Comments: []*Comment{
+			{
+				ID:   "comment13",
+				Text: "Wait...",
+			},
+		},
 		CreatedAt: "2025-10-28T00:00:00.000Z",
 	},
 	&Story{
@@ -290,6 +354,11 @@ type ImageArgs struct {
 	URL    string
 	Width  *int
 	Height *int
+}
+
+type Comment struct {
+	ID   string `json:"id"`
+	Text string `json:"text"`
 }
 
 func buildImageURL(args ImageArgs) string {
@@ -432,4 +501,49 @@ func contactsResolver(p graphql.ResolveParams) (interface{}, error) {
 	}
 
 	return filtered, nil
+}
+
+func storyCommentsResolver(p graphql.ResolveParams) (interface{}, error) {
+	story, ok := p.Source.(*Story)
+	if !ok || story == nil {
+		return nil, nil
+	}
+
+	first, firstOK := p.Args["first"].(int)
+	afterStr, afterOK := p.Args["after"].(string)
+
+	after := 0
+	if afterOK {
+		if a, err := strconv.Atoi(afterStr); err == nil {
+			after = a
+		}
+	}
+
+	count := len(story.Comments)
+	if firstOK {
+		count = first
+	}
+
+	next := after + count
+	if next > len(story.Comments) {
+		next = len(story.Comments)
+	}
+
+	edges := make([]map[string]interface{}, next-after)
+	for i, c := range story.Comments[after:next] {
+		edges[i] = map[string]interface{}{
+			"node":   c,
+			"cursor": strconv.Itoa(after + i + 1),
+		}
+	}
+
+	pageInfo := map[string]interface{}{
+		"hasNextPage": next < len(story.Comments),
+		"endCursor":   strconv.Itoa(next),
+	}
+
+	return map[string]interface{}{
+		"edges":    edges,
+		"pageInfo": pageInfo,
+	}, nil
 }

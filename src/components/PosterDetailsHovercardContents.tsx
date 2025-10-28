@@ -74,7 +74,7 @@ function PosterDetailsHovercardContentsBody({
   return (
     <>
       <Image
-        image={data?.profilePicture}
+        image={data!.profilePicture!}
         width={128}
         height={128}
         className="posterHovercard__image"
@@ -82,7 +82,7 @@ function PosterDetailsHovercardContentsBody({
       <div className="posterHovercard__name">{data?.name}</div>
       <ul className="posterHovercard__details">
         <li>
-          Joined <Timestamp time={data?.joined} />
+          Joined <Timestamp time={data!.joined!} />
         </li>
         {data.location != null && <li>{data.location.name}</li>}
         {data.organizationKind != null && (

@@ -5,6 +5,7 @@ import type { ReactElement } from "react";
 
 import type { StoryLikeButtonFragment$key } from "../../__generated__/StoryLikeButtonFragment.graphql";
 import type { StoryLikeButtonLikeMutation } from "../../__generated__/StoryLikeButtonLikeMutation.graphql";
+import type { StoryLikeButton_updatable$key } from "../../__generated__/StoryLikeButton_updatable.graphql";
 
 interface StoryLikeButtonProps {
   story: StoryLikeButtonFragment$key;
@@ -43,6 +44,23 @@ export default function StoryLikeButton({
       variables: {
         id: data.id,
         doesLike: !data.doesViewerLike,
+      },
+      optimisticUpdater: (store) => {
+        const fragment = graphql`
+          fragment StoryLikeButton_updatable on Story @updatable {
+            likeCount
+            doesViewerLike
+          }
+        `;
+
+        const { updatableData } =
+          store.readUpdatableFragment<StoryLikeButton_updatable$key>(
+            fragment,
+            story,
+          );
+        const alreadyLikes = updatableData.doesViewerLike;
+        updatableData.doesViewerLike = !alreadyLikes;
+        updatableData.likeCount += alreadyLikes ? -1 : 1;
       },
     });
   };

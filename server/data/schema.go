@@ -5,20 +5,22 @@ import (
 )
 
 var (
-	nodeInterface        *graphql.Interface
-	categoryType         *graphql.Enum
-	organizationKindType *graphql.Enum
-	imageType            *graphql.Object
-	locationType         *graphql.Object
-	actorInterface       *graphql.Interface
-	personType           *graphql.Object
-	organizationType     *graphql.Object
-	commentType          *graphql.Object
-	pageInfoType         *graphql.Object
-	storyType            *graphql.Object
-	viewerType           *graphql.Object
-	queryType            *graphql.Object
-	Schema               graphql.Schema
+	nodeInterface             *graphql.Interface
+	categoryType              *graphql.Enum
+	organizationKindType      *graphql.Enum
+	imageType                 *graphql.Object
+	locationType              *graphql.Object
+	actorInterface            *graphql.Interface
+	personType                *graphql.Object
+	organizationType          *graphql.Object
+	commentType               *graphql.Object
+	pageInfoType              *graphql.Object
+	storyType                 *graphql.Object
+	viewerType                *graphql.Object
+	queryType                 *graphql.Object
+	storyMutationResponseType *graphql.Object
+	mutationType              *graphql.Object
+	Schema                    graphql.Schema
 )
 
 func init() {
@@ -269,6 +271,12 @@ func init() {
 				Type:    graphql.NewNonNull(actorInterface),
 				Resolve: storyPosterResolver,
 			},
+			"likeCount": &graphql.Field{
+				Type: graphql.Int,
+			},
+			"doesViewerLike": &graphql.Field{
+				Type: graphql.Boolean,
+			},
 			"comments": &graphql.Field{
 				Type: commentsConnectionType,
 				Args: graphql.FieldConfigArgument{
@@ -355,9 +363,37 @@ func init() {
 		},
 	})
 
+	storyMutationResponseType = graphql.NewObject(graphql.ObjectConfig{
+		Name: "StoryMutationResponse",
+		Fields: graphql.Fields{
+			"story": &graphql.Field{
+				Type: storyType,
+			},
+		},
+	})
+
+	mutationType = graphql.NewObject(graphql.ObjectConfig{
+		Name: "Mutation",
+		Fields: graphql.Fields{
+			"likeStory": &graphql.Field{
+				Type: storyMutationResponseType,
+				Args: graphql.FieldConfigArgument{
+					"id": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.ID),
+					},
+					"doesLike": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.Boolean),
+					},
+				},
+				Resolve: resolveLikeStoryMutation,
+			},
+		},
+	})
+
 	var err error
 	Schema, err = graphql.NewSchema(graphql.SchemaConfig{
-		Query: queryType,
+		Query:    queryType,
+		Mutation: mutationType,
 		Types: []graphql.Type{
 			personType,
 			organizationType,

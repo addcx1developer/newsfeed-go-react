@@ -57,14 +57,16 @@ type Image struct {
 }
 
 type Story struct {
-	ID        string     `json:"id"`
-	Title     string     `json:"title"`
-	Thumbnail *Image     `json:"thumbnail"`
-	Summary   string     `json:"summary"`
-	Category  string     `json:"category"`
-	AuthorID  string     `json:"authorID"`
-	Comments  []*Comment `json:"comments"`
-	CreatedAt string     `json:"createdAt"`
+	ID             string     `json:"id"`
+	Title          string     `json:"title"`
+	Thumbnail      *Image     `json:"thumbnail"`
+	Summary        string     `json:"summary"`
+	Category       string     `json:"category"`
+	AuthorID       string     `json:"authorID"`
+	LikeCount      int        `json:"likeCount"`
+	DoesViewerLike bool       `json:"doesViewerLike"`
+	Comments       []*Comment `json:"comments"`
+	CreatedAt      string     `json:"createdAt"`
 }
 
 func (s *Story) GetID() string {
@@ -597,5 +599,36 @@ func storyCommentsResolver(p graphql.ResolveParams) (interface{}, error) {
 	return map[string]interface{}{
 		"edges":    edges,
 		"pageInfo": pageInfo,
+	}, nil
+}
+
+func resolveLikeStoryMutation(p graphql.ResolveParams) (interface{}, error) {
+	id, _ := p.Args["id"].(string)
+	doesLike, _ := p.Args["doesLike"].(bool)
+
+	var story *Story
+	for _, n := range nodes {
+		if s, ok := n.(*Story); ok && s.ID == id {
+			story = s
+			break
+		}
+	}
+
+	if story == nil {
+		return nil, fmt.Errorf("story with id %s not found", id)
+	}
+
+	toInt := func(b bool) int {
+		if b {
+			return 1
+		}
+		return 0
+	}
+
+	story.LikeCount += toInt(doesLike) - toInt(story.DoesViewerLike)
+	story.DoesViewerLike = doesLike
+
+	return map[string]interface{}{
+		"story": story,
 	}, nil
 }

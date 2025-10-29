@@ -632,3 +632,37 @@ func resolveLikeStoryMutation(p graphql.ResolveParams) (interface{}, error) {
 		"story": story,
 	}, nil
 }
+
+var nextCommentID = 0
+
+func resolvePostStoryCommentMutation(p graphql.ResolveParams) (interface{}, error) {
+	id, _ := p.Args["id"].(string)
+	text, _ := p.Args["text"].(string)
+
+	var story *Story
+	for _, n := range nodes {
+		if s, ok := n.(*Story); ok && s.ID == id {
+			story = s
+			break
+		}
+	}
+
+	if story == nil {
+		return nil, fmt.Errorf("story with id %s not found", id)
+	}
+
+	newComment := Comment{
+		ID:   fmt.Sprintf("posted-comment-%d", nextCommentID),
+		Text: text,
+	}
+	nextCommentID++
+
+	story.Comments = append([]*Comment{&newComment}, story.Comments...)
+
+	return map[string]interface{}{
+		"story": story,
+		"commentEdge": map[string]interface{}{
+			"node": newComment,
+		},
+	}, nil
+}

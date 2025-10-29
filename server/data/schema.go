@@ -5,22 +5,23 @@ import (
 )
 
 var (
-	nodeInterface             *graphql.Interface
-	categoryType              *graphql.Enum
-	organizationKindType      *graphql.Enum
-	imageType                 *graphql.Object
-	locationType              *graphql.Object
-	actorInterface            *graphql.Interface
-	personType                *graphql.Object
-	organizationType          *graphql.Object
-	commentType               *graphql.Object
-	pageInfoType              *graphql.Object
-	storyType                 *graphql.Object
-	viewerType                *graphql.Object
-	queryType                 *graphql.Object
-	storyMutationResponseType *graphql.Object
-	mutationType              *graphql.Object
-	Schema                    graphql.Schema
+	nodeInterface                    *graphql.Interface
+	categoryType                     *graphql.Enum
+	organizationKindType             *graphql.Enum
+	imageType                        *graphql.Object
+	locationType                     *graphql.Object
+	actorInterface                   *graphql.Interface
+	personType                       *graphql.Object
+	organizationType                 *graphql.Object
+	commentType                      *graphql.Object
+	pageInfoType                     *graphql.Object
+	storyType                        *graphql.Object
+	viewerType                       *graphql.Object
+	queryType                        *graphql.Object
+	storyMutationResponseType        *graphql.Object
+	storyCommentMutationResponseType *graphql.Object
+	mutationType                     *graphql.Object
+	Schema                           graphql.Schema
 )
 
 func init() {
@@ -247,7 +248,7 @@ func init() {
 		return connectionType, edgeType
 	}
 
-	commentsConnectionType, _ := createConnectionType("comments", commentType)
+	commentsConnectionType, commentsConnectionEdgeType := createConnectionType("comments", commentType)
 
 	storyType = graphql.NewObject(graphql.ObjectConfig{
 		Name: "Story",
@@ -372,6 +373,18 @@ func init() {
 		},
 	})
 
+	storyCommentMutationResponseType = graphql.NewObject(graphql.ObjectConfig{
+		Name: "StoryCommentMutationResponse",
+		Fields: graphql.Fields{
+			"story": &graphql.Field{
+				Type: storyType,
+			},
+			"commentEdge": &graphql.Field{
+				Type: commentsConnectionEdgeType,
+			},
+		},
+	})
+
 	mutationType = graphql.NewObject(graphql.ObjectConfig{
 		Name: "Mutation",
 		Fields: graphql.Fields{
@@ -386,6 +399,18 @@ func init() {
 					},
 				},
 				Resolve: resolveLikeStoryMutation,
+			},
+			"postStoryComment": &graphql.Field{
+				Type: storyCommentMutationResponseType,
+				Args: graphql.FieldConfigArgument{
+					"id": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.ID),
+					},
+					"text": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+				},
+				Resolve: resolvePostStoryCommentMutation,
 			},
 		},
 	})

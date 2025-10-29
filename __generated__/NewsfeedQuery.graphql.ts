@@ -1,6 +1,6 @@
 /**
- * @generated SignedSource<<9e239f22884e74a0082b652ee58c1801>>
- * @relayHash ec2d697992b676ca025426bd218d3721
+ * @generated SignedSource<<0541b294ae1a9fe3af02d4c4f3cdf69e>>
+ * @relayHash 563edbbac680874904e8fb483a1581a9
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,7 +9,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-// @relayRequestID 9409bd7374d7793d04465874f1bada5d83e3541da56498f2e22b1eec2c181241
+// @relayRequestID 23b014e54d94457a057f14d496c75c80145c5fd1172df3219e3174a5404e7366
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
@@ -292,6 +292,20 @@ return {
                         "kind": "LinkedHandle",
                         "name": "comments"
                       },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "likeCount",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "doesViewerLike",
+                        "storageKey": null
+                      },
                       (v2/*: any*/)
                     ],
                     "storageKey": null
@@ -331,7 +345,7 @@ return {
     ]
   },
   "params": {
-    "id": "9409bd7374d7793d04465874f1bada5d83e3541da56498f2e22b1eec2c181241",
+    "id": "23b014e54d94457a057f14d496c75c80145c5fd1172df3219e3174a5404e7366",
     "metadata": {},
     "name": "NewsfeedQuery",
     "operationKind": "query",

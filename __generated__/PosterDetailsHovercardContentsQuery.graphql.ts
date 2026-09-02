@@ -1,8 +1,7 @@
 /**
- * @generated SignedSource<<056b95b3b552439482619d762b366063>>
+ * @generated SignedSource<<e553e7f6911d39a1f5dac42997c2c861>>
  * @relayHash ea81b33bc323e8e5d9ddeab7b0e2093a
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* tslint:disable */
@@ -18,7 +17,9 @@ export type PosterDetailsHovercardContentsQuery$variables = {
 };
 export type PosterDetailsHovercardContentsQuery$data = {
   readonly node: {
-    readonly " $fragmentSpreads": FragmentRefs<"PosterDetailsHovercardContentsBodyFragment">;
+    readonly PosterDetailsHovercardContentsBodyFragment?: {
+      readonly " $fragmentSpreads": FragmentRefs<"PosterDetailsHovercardContentsBodyFragment">;
+    } | null | undefined;
   } | null | undefined;
 };
 export type PosterDetailsHovercardContentsQuery = {
@@ -57,14 +58,14 @@ v3 = {
 };
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "PosterDetailsHovercardContentsQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v1/*:: as any*/),
         "concreteType": null,
         "kind": "LinkedField",
         "name": "node",
@@ -74,8 +75,19 @@ return {
             "kind": "InlineFragment",
             "selections": [
               {
-                "args": null,
-                "kind": "FragmentSpread",
+                "fragment": {
+                  "kind": "InlineFragment",
+                  "selections": [
+                    {
+                      "args": null,
+                      "kind": "FragmentSpread",
+                      "name": "PosterDetailsHovercardContentsBodyFragment"
+                    }
+                  ],
+                  "type": "Actor",
+                  "abstractKey": "__isActor"
+                },
+                "kind": "AliasedInlineFragmentSpread",
                 "name": "PosterDetailsHovercardContentsBodyFragment"
               }
             ],
@@ -91,13 +103,13 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Operation",
     "name": "PosterDetailsHovercardContentsQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v1/*:: as any*/),
         "concreteType": null,
         "kind": "LinkedField",
         "name": "node",
@@ -110,11 +122,11 @@ return {
             "name": "__typename",
             "storageKey": null
           },
-          (v2/*: any*/),
+          (v2/*:: as any*/),
           {
             "kind": "InlineFragment",
             "selections": [
-              (v3/*: any*/),
+              (v3/*:: as any*/),
               {
                 "alias": null,
                 "args": null,
@@ -158,8 +170,8 @@ return {
                     "name": "location",
                     "plural": false,
                     "selections": [
-                      (v3/*: any*/),
-                      (v2/*: any*/)
+                      (v3/*:: as any*/),
+                      (v2/*:: as any*/)
                     ],
                     "storageKey": null
                   }
@@ -200,6 +212,6 @@ return {
 };
 })();
 
-(node as any).hash = "da5053ee7f05480a44e9aca3d552aa6d";
+(node as any).hash = "997dee62a33b22b06a52512952ad3939";
 
 export default node;

@@ -1,7 +1,6 @@
 /**
- * @generated SignedSource<<26ed491e27ed717630b698d204ad9417>>
+ * @generated SignedSource<<d1af2f564338fab6e526a90f97191353>>
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* tslint:disable */
@@ -11,6 +10,7 @@
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type StoryLikeButtonFragment$data = {
+  readonly $updatableFragmentSpreads: FragmentRefs<"StoryLikeButton_updatable">;
   readonly doesViewerLike: boolean | null | undefined;
   readonly id: string;
   readonly likeCount: number | null | undefined;
@@ -47,12 +47,17 @@ const node: ReaderFragment = {
       "kind": "ScalarField",
       "name": "doesViewerLike",
       "storageKey": null
+    },
+    {
+      "args": null,
+      "kind": "FragmentSpread",
+      "name": "StoryLikeButton_updatable"
     }
   ],
   "type": "Story",
   "abstractKey": null
 };
 
-(node as any).hash = "617c1de721141eb511915302fb80c08d";
+(node as any).hash = "06c200b881818c231520f1fa911785f2";
 
 export default node;

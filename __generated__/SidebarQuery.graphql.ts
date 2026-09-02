@@ -1,8 +1,7 @@
 /**
- * @generated SignedSource<<0a51f60fb4a3fff77976ce7d74841e41>>
+ * @generated SignedSource<<e9fa5c915457be94faf771e8658960d4>>
  * @relayHash cfd00933be468af9c9215168c101c6f9
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* tslint:disable */
@@ -107,8 +106,8 @@ return {
             "name": "actor",
             "plural": false,
             "selections": [
-              (v0/*: any*/),
-              (v1/*: any*/),
+              (v0/*:: as any*/),
+              (v1/*:: as any*/),
               {
                 "alias": null,
                 "args": null,
@@ -117,11 +116,11 @@ return {
                 "name": "profilePicture",
                 "plural": false,
                 "selections": [
-                  (v2/*: any*/)
+                  (v2/*:: as any*/)
                 ],
                 "storageKey": null
               },
-              (v3/*: any*/)
+              (v3/*:: as any*/)
             ],
             "storageKey": null
           },
@@ -133,13 +132,13 @@ return {
             "name": "contacts",
             "plural": true,
             "selections": [
-              (v0/*: any*/),
-              (v3/*: any*/),
+              (v0/*:: as any*/),
+              (v3/*:: as any*/),
               {
                 "kind": "TypeDiscriminator",
                 "abstractKey": "__isActor"
               },
-              (v1/*: any*/),
+              (v1/*:: as any*/),
               {
                 "alias": null,
                 "args": null,
@@ -148,7 +147,7 @@ return {
                 "name": "profilePicture",
                 "plural": false,
                 "selections": [
-                  (v2/*: any*/),
+                  (v2/*:: as any*/),
                   {
                     "alias": null,
                     "args": null,

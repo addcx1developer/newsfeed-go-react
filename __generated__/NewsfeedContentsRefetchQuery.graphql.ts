@@ -1,15 +1,14 @@
 /**
- * @generated SignedSource<<e74934d08a82b593c50ef8fcc499417d>>
- * @relayHash a9bcfeb5103e55728ac144b7f2aef8b3
+ * @generated SignedSource<<16e031b9e37c0d68362779ae54e101f9>>
+ * @relayHash 57c2f4daa8663573a18cfeb51aa2eac1
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-// @relayRequestID 66bf6fef5ac9f22ff8d124caccbbf83c60e7216892ff0696ab79315087a9ca65
+// @relayRequestID 9458c045fdcbac93cd28c9753213e51b866cae178723a18a62a3e2bbc80f7f65
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
@@ -101,7 +100,7 @@ v8 = {
 };
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "NewsfeedContentsRefetchQuery",
@@ -128,7 +127,7 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Operation",
     "name": "NewsfeedContentsRefetchQuery",
     "selections": [
@@ -142,7 +141,7 @@ return {
         "selections": [
           {
             "alias": null,
-            "args": (v1/*: any*/),
+            "args": (v1/*:: as any*/),
             "concreteType": "storiesConnection",
             "kind": "LinkedField",
             "name": "newsfeedStories",
@@ -164,7 +163,7 @@ return {
                     "name": "node",
                     "plural": false,
                     "selections": [
-                      (v2/*: any*/),
+                      (v2/*:: as any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -194,12 +193,12 @@ return {
                         "name": "poster",
                         "plural": false,
                         "selections": [
-                          (v3/*: any*/),
+                          (v3/*:: as any*/),
                           {
                             "kind": "TypeDiscriminator",
                             "abstractKey": "__isActor"
                           },
-                          (v2/*: any*/),
+                          (v2/*:: as any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -233,7 +232,7 @@ return {
                                 "name": "url",
                                 "storageKey": "url(height:60,width:60)"
                               },
-                              (v4/*: any*/)
+                              (v4/*:: as any*/)
                             ],
                             "storageKey": null
                           }
@@ -261,13 +260,13 @@ return {
                             "name": "url",
                             "storageKey": "url(width:400)"
                           },
-                          (v4/*: any*/)
+                          (v4/*:: as any*/)
                         ],
                         "storageKey": null
                       },
                       {
                         "alias": null,
-                        "args": (v5/*: any*/),
+                        "args": (v5/*:: as any*/),
                         "concreteType": "commentsConnection",
                         "kind": "LinkedField",
                         "name": "comments",
@@ -289,7 +288,7 @@ return {
                                 "name": "node",
                                 "plural": false,
                                 "selections": [
-                                  (v2/*: any*/),
+                                  (v2/*:: as any*/),
                                   {
                                     "alias": null,
                                     "args": null,
@@ -297,11 +296,11 @@ return {
                                     "name": "text",
                                     "storageKey": null
                                   },
-                                  (v3/*: any*/)
+                                  (v3/*:: as any*/)
                                 ],
                                 "storageKey": null
                               },
-                              (v6/*: any*/)
+                              (v6/*:: as any*/)
                             ],
                             "storageKey": null
                           },
@@ -313,8 +312,8 @@ return {
                             "name": "pageInfo",
                             "plural": false,
                             "selections": [
-                              (v7/*: any*/),
-                              (v8/*: any*/)
+                              (v7/*:: as any*/),
+                              (v8/*:: as any*/)
                             ],
                             "storageKey": null
                           }
@@ -323,7 +322,7 @@ return {
                       },
                       {
                         "alias": null,
-                        "args": (v5/*: any*/),
+                        "args": (v5/*:: as any*/),
                         "filters": null,
                         "handle": "connection",
                         "key": "StoryCommentsSectionFragment_comments",
@@ -344,11 +343,11 @@ return {
                         "name": "doesViewerLike",
                         "storageKey": null
                       },
-                      (v3/*: any*/)
+                      (v3/*:: as any*/)
                     ],
                     "storageKey": null
                   },
-                  (v6/*: any*/)
+                  (v6/*:: as any*/)
                 ],
                 "storageKey": null
               },
@@ -360,8 +359,8 @@ return {
                 "name": "pageInfo",
                 "plural": false,
                 "selections": [
-                  (v8/*: any*/),
-                  (v7/*: any*/)
+                  (v8/*:: as any*/),
+                  (v7/*:: as any*/)
                 ],
                 "storageKey": null
               }
@@ -370,7 +369,7 @@ return {
           },
           {
             "alias": null,
-            "args": (v1/*: any*/),
+            "args": (v1/*:: as any*/),
             "filters": null,
             "handle": "connection",
             "key": "NewsfeedContentsFragment_newsfeedStories",
@@ -383,7 +382,7 @@ return {
     ]
   },
   "params": {
-    "id": "66bf6fef5ac9f22ff8d124caccbbf83c60e7216892ff0696ab79315087a9ca65",
+    "id": "9458c045fdcbac93cd28c9753213e51b866cae178723a18a62a3e2bbc80f7f65",
     "metadata": {},
     "name": "NewsfeedContentsRefetchQuery",
     "operationKind": "query",

@@ -19,7 +19,7 @@ export const PosterDetailsHovercardContentsQuery = graphql`
   query PosterDetailsHovercardContentsQuery($posterID: ID!) {
     node(id: $posterID) {
       ... on Actor {
-        ...PosterDetailsHovercardContentsBodyFragment
+        ...PosterDetailsHovercardContentsBodyFragment @alias
       }
     }
   }
@@ -35,7 +35,9 @@ export default function PosterDetailsHovercardContents({
 
   return (
     <div className="posterHovercard">
-      <PosterDetailsHovercardContentsBody poster={data.node!} />
+      <PosterDetailsHovercardContentsBody
+        poster={data.node!.PosterDetailsHovercardContentsBodyFragment!}
+      />
     </div>
   );
 }

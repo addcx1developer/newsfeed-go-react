@@ -16,6 +16,7 @@ const StoryLikeButtonFragment = graphql`
     id
     likeCount
     doesViewerLike
+    ...StoryLikeButton_updatable
   }
 `;
 
@@ -23,6 +24,7 @@ const StoryLikeButtonLikeMutation = graphql`
   mutation StoryLikeButtonLikeMutation($id: ID!, $doesLike: Boolean!) {
     likeStory(id: $id, doesLike: $doesLike) {
       story {
+        __typename
         ...StoryLikeButtonFragment
       }
     }
@@ -56,11 +58,12 @@ export default function StoryLikeButton({
         const { updatableData } =
           store.readUpdatableFragment<StoryLikeButton_updatable$key>(
             fragment,
-            story,
+            data,
           );
         const alreadyLikes = updatableData.doesViewerLike;
         updatableData.doesViewerLike = !alreadyLikes;
-        updatableData.likeCount += alreadyLikes ? -1 : 1;
+        updatableData.likeCount =
+          (updatableData.likeCount ?? 0) + (alreadyLikes ? -1 : 1);
       },
     });
   };

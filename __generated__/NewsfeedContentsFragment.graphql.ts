@@ -1,7 +1,6 @@
 /**
- * @generated SignedSource<<a27f5861deac3e7692746f9f1da17532>>
+ * @generated SignedSource<<b179987a34ed3ede6084d6182b171309>>
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* tslint:disable */
@@ -55,7 +54,7 @@ return {
         "count": "count",
         "cursor": "cursor",
         "direction": "forward",
-        "path": (v0/*: any*/)
+        "path": (v0/*:: as any*/)
       }
     ],
     "refetch": {
@@ -65,7 +64,7 @@ return {
           "cursor": "cursor"
         },
         "backward": null,
-        "path": (v0/*: any*/)
+        "path": (v0/*:: as any*/)
       },
       "fragmentPathInResult": [],
       "operation": NewsfeedContentsRefetchQuery_graphql

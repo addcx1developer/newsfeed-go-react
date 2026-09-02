@@ -1,8 +1,7 @@
 /**
- * @generated SignedSource<<9d1c67b9d5a2e88a2d7db19706f5199c>>
+ * @generated SignedSource<<f7dae868e1595e6e6bb2d4b15c8e32b0>>
  * @relayHash d8d9a3000f0678d9227d23f0dc142952
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* tslint:disable */
@@ -43,7 +42,7 @@ v1 = [
 ];
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "ContactsListRefetchQuery",
@@ -57,7 +56,7 @@ return {
         "plural": false,
         "selections": [
           {
-            "args": (v1/*: any*/),
+            "args": (v1/*:: as any*/),
             "kind": "FragmentSpread",
             "name": "ContactsListFragment"
           }
@@ -70,7 +69,7 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Operation",
     "name": "ContactsListRefetchQuery",
     "selections": [
@@ -84,7 +83,7 @@ return {
         "selections": [
           {
             "alias": null,
-            "args": (v1/*: any*/),
+            "args": (v1/*:: as any*/),
             "concreteType": null,
             "kind": "LinkedField",
             "name": "contacts",

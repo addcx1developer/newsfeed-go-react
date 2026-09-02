@@ -1,8 +1,7 @@
 /**
- * @generated SignedSource<<6806fb97e79588227126bad954ffd1a2>>
+ * @generated SignedSource<<839fc9642f5541a530c85283d0621e9a>>
  * @relayHash 355c06dfe5376764aa1e6505dd437b34
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* tslint:disable */
@@ -81,14 +80,14 @@ v4 = [
 ];
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "StoryCommentsSectionPaginationQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v1/*:: as any*/),
         "concreteType": null,
         "kind": "LinkedField",
         "name": "node",
@@ -119,26 +118,26 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Operation",
     "name": "StoryCommentsSectionPaginationQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v1/*:: as any*/),
         "concreteType": null,
         "kind": "LinkedField",
         "name": "node",
         "plural": false,
         "selections": [
-          (v2/*: any*/),
-          (v3/*: any*/),
+          (v2/*:: as any*/),
+          (v3/*:: as any*/),
           {
             "kind": "InlineFragment",
             "selections": [
               {
                 "alias": null,
-                "args": (v4/*: any*/),
+                "args": (v4/*:: as any*/),
                 "concreteType": "commentsConnection",
                 "kind": "LinkedField",
                 "name": "comments",
@@ -160,7 +159,7 @@ return {
                         "name": "node",
                         "plural": false,
                         "selections": [
-                          (v3/*: any*/),
+                          (v3/*:: as any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -168,7 +167,7 @@ return {
                             "name": "text",
                             "storageKey": null
                           },
-                          (v2/*: any*/)
+                          (v2/*:: as any*/)
                         ],
                         "storageKey": null
                       },
@@ -212,7 +211,7 @@ return {
               },
               {
                 "alias": null,
-                "args": (v4/*: any*/),
+                "args": (v4/*:: as any*/),
                 "filters": null,
                 "handle": "connection",
                 "key": "StoryCommentsSectionFragment_comments",

@@ -1,15 +1,14 @@
 /**
- * @generated SignedSource<<0541b294ae1a9fe3af02d4c4f3cdf69e>>
- * @relayHash 563edbbac680874904e8fb483a1581a9
+ * @generated SignedSource<<e8ade1e9c7a8b534226702196dac0c99>>
+ * @relayHash 3e4aa75b8646ada6601233091fbb97ee
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-// @relayRequestID 23b014e54d94457a057f14d496c75c80145c5fd1172df3219e3174a5404e7366
+// @relayRequestID 9177a18af8a3ab47c767877394a01516d39b3fe50250ecc57c1cef814591d931
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
@@ -104,7 +103,7 @@ return {
         "selections": [
           {
             "alias": null,
-            "args": (v0/*: any*/),
+            "args": (v0/*:: as any*/),
             "concreteType": "storiesConnection",
             "kind": "LinkedField",
             "name": "newsfeedStories",
@@ -126,7 +125,7 @@ return {
                     "name": "node",
                     "plural": false,
                     "selections": [
-                      (v1/*: any*/),
+                      (v1/*:: as any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -156,12 +155,12 @@ return {
                         "name": "poster",
                         "plural": false,
                         "selections": [
-                          (v2/*: any*/),
+                          (v2/*:: as any*/),
                           {
                             "kind": "TypeDiscriminator",
                             "abstractKey": "__isActor"
                           },
-                          (v1/*: any*/),
+                          (v1/*:: as any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -195,7 +194,7 @@ return {
                                 "name": "url",
                                 "storageKey": "url(height:60,width:60)"
                               },
-                              (v3/*: any*/)
+                              (v3/*:: as any*/)
                             ],
                             "storageKey": null
                           }
@@ -223,13 +222,13 @@ return {
                             "name": "url",
                             "storageKey": "url(width:400)"
                           },
-                          (v3/*: any*/)
+                          (v3/*:: as any*/)
                         ],
                         "storageKey": null
                       },
                       {
                         "alias": null,
-                        "args": (v0/*: any*/),
+                        "args": (v0/*:: as any*/),
                         "concreteType": "commentsConnection",
                         "kind": "LinkedField",
                         "name": "comments",
@@ -251,7 +250,7 @@ return {
                                 "name": "node",
                                 "plural": false,
                                 "selections": [
-                                  (v1/*: any*/),
+                                  (v1/*:: as any*/),
                                   {
                                     "alias": null,
                                     "args": null,
@@ -259,11 +258,11 @@ return {
                                     "name": "text",
                                     "storageKey": null
                                   },
-                                  (v2/*: any*/)
+                                  (v2/*:: as any*/)
                                 ],
                                 "storageKey": null
                               },
-                              (v4/*: any*/)
+                              (v4/*:: as any*/)
                             ],
                             "storageKey": null
                           },
@@ -275,8 +274,8 @@ return {
                             "name": "pageInfo",
                             "plural": false,
                             "selections": [
-                              (v5/*: any*/),
-                              (v6/*: any*/)
+                              (v5/*:: as any*/),
+                              (v6/*:: as any*/)
                             ],
                             "storageKey": null
                           }
@@ -285,7 +284,7 @@ return {
                       },
                       {
                         "alias": null,
-                        "args": (v0/*: any*/),
+                        "args": (v0/*:: as any*/),
                         "filters": null,
                         "handle": "connection",
                         "key": "StoryCommentsSectionFragment_comments",
@@ -306,11 +305,11 @@ return {
                         "name": "doesViewerLike",
                         "storageKey": null
                       },
-                      (v2/*: any*/)
+                      (v2/*:: as any*/)
                     ],
                     "storageKey": null
                   },
-                  (v4/*: any*/)
+                  (v4/*:: as any*/)
                 ],
                 "storageKey": null
               },
@@ -322,8 +321,8 @@ return {
                 "name": "pageInfo",
                 "plural": false,
                 "selections": [
-                  (v6/*: any*/),
-                  (v5/*: any*/)
+                  (v6/*:: as any*/),
+                  (v5/*:: as any*/)
                 ],
                 "storageKey": null
               }
@@ -332,7 +331,7 @@ return {
           },
           {
             "alias": null,
-            "args": (v0/*: any*/),
+            "args": (v0/*:: as any*/),
             "filters": null,
             "handle": "connection",
             "key": "NewsfeedContentsFragment_newsfeedStories",
@@ -345,7 +344,7 @@ return {
     ]
   },
   "params": {
-    "id": "23b014e54d94457a057f14d496c75c80145c5fd1172df3219e3174a5404e7366",
+    "id": "9177a18af8a3ab47c767877394a01516d39b3fe50250ecc57c1cef814591d931",
     "metadata": {},
     "name": "NewsfeedQuery",
     "operationKind": "query",

@@ -15,7 +15,7 @@ interface PosterDetailsHovercardContentsProps {
   queryRef: PreloadedQuery<QueryType>;
 }
 
-const PosterDetailsHovercardContentsQuery = graphql`
+export const PosterDetailsHovercardContentsQuery = graphql`
   query PosterDetailsHovercardContentsQuery($posterID: ID!) {
     node(id: $posterID) {
       ... on Actor {

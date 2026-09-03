@@ -9,6 +9,7 @@ import type { StoryCommentsSectionPaginationQuery } from "../../__generated__/St
 import Comment from "./Comment";
 import LoadMoreCommentsButton from "./LoadMoreCommentsButton";
 import SmallSpinner from "./SmallSpinner";
+import StoryCommentsComposer from "./StoryCommentsComposer";
 
 interface StoryCommentsSectionProps {
   story: StoryCommentsSectionFragment$key;
@@ -33,6 +34,7 @@ const StoryCommentsSectionFragment = graphql`
         hasNextPage
       }
     }
+    ...StoryCommentsComposerFragment
   }
 `;
 
@@ -48,6 +50,7 @@ export default function StoryCommentsSection({
 
   return (
     <div>
+      <StoryCommentsComposer story={data} />
       {data!.comments!.edges!.map((edge) => (
         <Comment key={edge!.node!.id} comment={edge!.node!} />
       ))}

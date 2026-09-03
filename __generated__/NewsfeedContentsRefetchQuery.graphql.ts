@@ -1,6 +1,6 @@
 /**
- * @generated SignedSource<<16e031b9e37c0d68362779ae54e101f9>>
- * @relayHash 57c2f4daa8663573a18cfeb51aa2eac1
+ * @generated SignedSource<<8281a459cd4349c0753e3a658d6c903b>>
+ * @relayHash a54d9a89e041a888e81ef429973bd31c
  * @lightSyntaxTransform
  */
 
@@ -8,7 +8,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-// @relayRequestID 9458c045fdcbac93cd28c9753213e51b866cae178723a18a62a3e2bbc80f7f65
+// @relayRequestID 0d04954414e5f4e3c704329d4d5954e72aeb5f79a9c0d5aa6c3860dcfbd32704
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
@@ -382,7 +382,7 @@ return {
     ]
   },
   "params": {
-    "id": "9458c045fdcbac93cd28c9753213e51b866cae178723a18a62a3e2bbc80f7f65",
+    "id": "0d04954414e5f4e3c704329d4d5954e72aeb5f79a9c0d5aa6c3860dcfbd32704",
     "metadata": {},
     "name": "NewsfeedContentsRefetchQuery",
     "operationKind": "query",
